@@ -1,0 +1,1779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joshua Adebayo — Chief Technology Officer</title>
+<style>
+  :root {
+    --bg-primary:#060614; --bg-secondary:#0d0b1e;
+    --bg-card:rgba(255,255,255,0.04); --bg-card-hover:rgba(255,255,255,0.07);
+    --purple:#7c3aed; --blue:#2563eb; --cyan:#06b6d4;
+    --gradient:linear-gradient(135deg,#7c3aed,#2563eb,#06b6d4);
+    --gradient-text:linear-gradient(90deg,#a78bfa,#60a5fa,#22d3ee);
+    --text-primary:#f1f5f9; --text-secondary:#94a3b8; --text-muted:#64748b;
+    --border:rgba(255,255,255,0.08); --border-active:rgba(124,58,237,0.5);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.6;overflow-x:hidden;}
+  ::-webkit-scrollbar{width:6px;} ::-webkit-scrollbar-track{background:var(--bg-primary);} ::-webkit-scrollbar-thumb{background:var(--purple);border-radius:3px;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(6,6,20,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+  .nav-brand{font-size:1.1rem;font-weight:700;background:var(--gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .nav-links{display:flex;gap:1.75rem;list-style:none;}
+  .nav-links a{color:var(--text-secondary);text-decoration:none;font-size:0.82rem;font-weight:500;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--text-primary);}
+
+  /* HERO */
+  .hero{min-height:100vh;display:flex;align-items:center;padding:6rem 4rem 4rem;position:relative;overflow:hidden;}
+  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 50%,rgba(124,58,237,0.12) 0%,transparent 60%),radial-gradient(ellipse 60% 80% at 30% 60%,rgba(37,99,235,0.10) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 80% 80%,rgba(6,182,212,0.08) 0%,transparent 50%);pointer-events:none;}
+  .hero-orb{position:absolute;border-radius:50%;filter:blur(80px);animation:float 8s ease-in-out infinite;}
+  .hero-orb-1{width:400px;height:400px;background:radial-gradient(circle,rgba(124,58,237,0.2),transparent);top:-100px;right:200px;}
+  .hero-orb-2{width:300px;height:300px;background:radial-gradient(circle,rgba(6,182,212,0.15),transparent);bottom:0;right:100px;animation-delay:3s;}
+  @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-30px);}}
+  .hero-content{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;max-width:1200px;margin:0 auto;width:100%;position:relative;z-index:1;}
+  .hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3);padding:0.375rem 1rem;border-radius:100px;font-size:0.8rem;font-weight:600;color:#a78bfa;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:1.5rem;}
+  .hero-badge .dot{width:6px;height:6px;background:#a78bfa;border-radius:50%;animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
+  h1{font-size:clamp(2.5rem,5vw,3.75rem);font-weight:800;line-height:1.1;margin-bottom:1rem;letter-spacing:-0.02em;}
+  .gradient-text{background:var(--gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .hero-subtitle{font-size:1.1rem;color:var(--text-secondary);margin-bottom:1rem;font-weight:500;}
+  .hero-tagline{font-size:1rem;color:var(--text-muted);margin-bottom:2.5rem;max-width:480px;line-height:1.7;}
+  .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
+  .btn-primary{display:inline-flex;align-items:center;gap:0.5rem;background:var(--gradient);color:white;padding:0.875rem 2rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;transition:opacity 0.2s,transform 0.2s;border:none;cursor:pointer;}
+  .btn-primary:hover{opacity:0.85;transform:translateY(-2px);}
+  .btn-secondary{display:inline-flex;align-items:center;gap:0.5rem;background:transparent;color:var(--text-primary);padding:0.875rem 2rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;border:1px solid var(--border);transition:border-color 0.2s,background 0.2s,transform 0.2s;cursor:pointer;}
+  .btn-secondary:hover{border-color:rgba(124,58,237,0.5);background:rgba(124,58,237,0.08);transform:translateY(-2px);}
+
+  /* PHOTO */
+  .hero-photo-wrap{display:flex;justify-content:center;align-items:center;position:relative;}
+  .photo-ring{position:relative;width:320px;height:320px;}
+  .photo-ring::before{content:'';position:absolute;inset:-3px;border-radius:50%;background:var(--gradient);z-index:0;animation:spin 8s linear infinite;}
+  @keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+  .photo-ring::after{content:'';position:absolute;inset:2px;border-radius:50%;background:var(--bg-primary);z-index:1;}
+  .photo-ring img{position:absolute;inset:6px;width:calc(100% - 12px);height:calc(100% - 12px);border-radius:50%;object-fit:cover;object-position:top center;z-index:2;}
+  .floating-badge{position:absolute;background:rgba(13,11,30,0.9);border:1px solid var(--border);backdrop-filter:blur(12px);border-radius:12px;padding:0.75rem 1rem;font-size:0.8rem;font-weight:600;z-index:10;animation:float 6s ease-in-out infinite;white-space:nowrap;}
+  .fb-left{left:-70px;top:60px;animation-delay:1s;border-color:rgba(124,58,237,0.3);}
+  .fb-right{right:-70px;bottom:80px;animation-delay:2.5s;border-color:rgba(6,182,212,0.3);}
+  .fb-bottom{bottom:-20px;left:50%;transform:translateX(-50%);animation-delay:4s;border-color:rgba(37,99,235,0.3);}
+  .fb-val{font-size:1.1rem;font-weight:800;background:var(--gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+  /* SECTIONS */
+  section{padding:5rem 4rem;position:relative;z-index:1;}
+  .section-inner{max-width:1100px;margin:0 auto;}
+  .section-label{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--purple);margin-bottom:0.75rem;}
+  .section-label::before{content:'';width:24px;height:2px;background:var(--gradient);display:block;}
+  h2{font-size:clamp(1.75rem,3vw,2.5rem);font-weight:800;line-height:1.2;margin-bottom:1rem;letter-spacing:-0.01em;}
+  .section-desc{font-size:1rem;color:var(--text-secondary);max-width:600px;margin-bottom:3rem;}
+
+  /* STATS */
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-bottom:3rem;}
+  .stat-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;text-align:center;transition:border-color 0.3s,background 0.3s;}
+  .stat-card:hover{border-color:var(--border-active);background:var(--bg-card-hover);}
+  .stat-number{font-size:2.25rem;font-weight:800;background:var(--gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:0.5rem;}
+  .stat-label{font-size:0.8rem;color:var(--text-muted);font-weight:500;}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+  .about-text p{color:var(--text-secondary);margin-bottom:1rem;line-height:1.8;}
+  .about-highlights{display:flex;flex-direction:column;gap:1rem;}
+  .highlight-item{display:flex;align-items:flex-start;gap:1rem;padding:1.25rem;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;transition:border-color 0.3s;}
+  .highlight-item:hover{border-color:var(--border-active);}
+  .hi-icon{width:40px;height:40px;border-radius:10px;background:rgba(124,58,237,0.15);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+  .hi-title{font-weight:700;font-size:0.9rem;margin-bottom:0.25rem;}
+  .hi-desc{font-size:0.8rem;color:var(--text-muted);line-height:1.5;}
+
+  /* EXPERIENCE */
+  #experience{background:var(--bg-secondary);}
+  .exp-timeline{display:flex;flex-direction:column;gap:1.5rem;}
+  .exp-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:border-color 0.3s,box-shadow 0.3s;cursor:pointer;}
+  .exp-card:hover{border-color:rgba(124,58,237,0.4);box-shadow:0 8px 32px rgba(124,58,237,0.1);}
+  .exp-card.open{border-color:rgba(124,58,237,0.5);box-shadow:0 8px 40px rgba(124,58,237,0.15);cursor:default;}
+  .exp-header{display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;}
+  .exp-logo{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:800;flex-shrink:0;color:white;}
+  .exp-logo--photo{padding:0;overflow:hidden;font-size:0;line-height:0;color:transparent;}
+  .exp-logo--photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .exp-meta{flex:1;min-width:0;}
+  .exp-company{font-size:1.05rem;font-weight:700;line-height:1.2;}
+  .exp-role{font-size:0.82rem;color:var(--text-secondary);margin-top:0.2rem;}
+  .exp-period{font-size:0.75rem;color:var(--text-muted);white-space:nowrap;}
+  .exp-header-right{display:flex;align-items:center;gap:0.75rem;flex-shrink:0;}
+
+  /* VISIT BUTTON in header */
+  .exp-visit-btn{
+    display:inline-flex;align-items:center;gap:0.35rem;
+    font-size:0.75rem;font-weight:700;
+    padding:0.4rem 0.9rem;border-radius:100px;
+    background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.3);
+    color:#67e8f9;text-decoration:none;
+    transition:background 0.2s,border-color 0.2s,transform 0.2s;
+    white-space:nowrap;
+  }
+  .exp-visit-btn:hover{background:rgba(6,182,212,0.2);border-color:rgba(6,182,212,0.6);transform:translateY(-1px);}
+  .exp-visit-btn.no-link{opacity:0.35;cursor:default;pointer-events:none;background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:var(--text-muted);}
+
+  .exp-toggle{width:32px;height:32px;border-radius:8px;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.25);display:flex;align-items:center;justify-content:center;font-size:0.9rem;transition:transform 0.3s,background 0.2s;flex-shrink:0;color:#a78bfa;}
+  .exp-card.open .exp-toggle{transform:rotate(180deg);background:rgba(124,58,237,0.25);}
+
+  .exp-tags{display:flex;flex-wrap:wrap;gap:0.5rem;padding:0 1.5rem 1.25rem;}
+  .exp-tag{font-size:0.72rem;padding:0.25rem 0.75rem;border-radius:100px;background:rgba(37,99,235,0.12);border:1px solid rgba(37,99,235,0.2);color:#93c5fd;font-weight:600;}
+
+  .exp-details{display:none;border-top:1px solid var(--border);animation:slideDown 0.35s ease;}
+  @keyframes slideDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+  .exp-card.open .exp-details{display:block;}
+
+  /* PROBLEM / SOLUTION */
+  .transformation-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;}
+  .transform-panel{padding:1.5rem 1.75rem;}
+  .transform-panel.problem{background:rgba(239,68,68,0.05);border-right:1px solid var(--border);}
+  .transform-panel.solution{background:rgba(6,182,212,0.05);}
+  .tp-label{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem;padding:0.25rem 0.75rem;border-radius:100px;}
+  .problem .tp-label{background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.25);color:#fca5a5;}
+  .solution .tp-label{background:rgba(6,182,212,0.12);border:1px solid rgba(6,182,212,0.25);color:#67e8f9;}
+  .tp-text{font-size:0.875rem;color:var(--text-secondary);line-height:1.7;}
+  .tp-text strong{color:var(--text-primary);font-weight:600;}
+
+  /* ACHIEVEMENTS */
+  .achievements-wrap{padding:1.5rem 1.75rem;border-top:1px solid var(--border);}
+  .ach-section-label{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#a78bfa;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;}
+  .ach-section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+  .achievements-list{display:flex;flex-direction:column;gap:0.75rem;}
+  .ach-item{display:flex;gap:0.875rem;align-items:flex-start;}
+  .ach-dot{width:6px;height:6px;border-radius:50%;background:var(--gradient);flex-shrink:0;margin-top:0.55rem;}
+  .ach-text{font-size:0.875rem;color:var(--text-secondary);line-height:1.65;}
+  .ach-text strong{color:var(--text-primary);font-weight:600;}
+  .impact-pill{display:inline-block;background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.25);border-radius:100px;padding:0.1rem 0.6rem;font-size:0.75rem;font-weight:700;color:#c4b5fd;margin-left:0.25rem;}
+
+  /* PRODUCTS */
+  .products-wrap{padding:0 1.75rem 1.75rem;border-top:1px solid var(--border);}
+  .products-label{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#22d3ee;margin:1.25rem 0 1rem;display:flex;align-items:center;gap:0.5rem;}
+  .products-label::after{content:'';flex:1;height:1px;background:var(--border);}
+  .products-label .click-hint{font-size:0.65rem;font-weight:500;color:var(--text-muted);text-transform:none;letter-spacing:0;margin-left:0.5rem;font-style:italic;}
+  .products-grid{display:grid;gap:1rem;}
+  .products-grid.cols-2{grid-template-columns:1fr 1fr;}
+  .products-grid.cols-3{grid-template-columns:1fr 1fr 1fr;}
+  .products-grid.cols-4{grid-template-columns:repeat(4,1fr);}
+
+  /* PRODUCT CARD */
+  .product-card{
+    border-radius:14px;overflow:hidden;position:relative;
+    border:1px solid var(--border);cursor:pointer;
+    background:var(--bg-card);
+    transition:border-color 0.25s,transform 0.25s,box-shadow 0.25s;
+  }
+  .product-card:hover{
+    border-color:rgba(6,182,212,0.5);
+    transform:translateY(-4px);
+    box-shadow:0 12px 32px rgba(6,182,212,0.12);
+  }
+  .product-card:hover .pc-name{color:var(--text-primary);}
+  .product-card:hover .product-screen.placeholder::after{opacity:1;}
+
+  .product-screen{width:100%;aspect-ratio:16/9;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.6rem;}
+  /* Real screenshots: flex + height:100% on <img> often collapses; pin image to the aspect box */
+  .product-screen:has(> img){display:block;}
+  .product-screen > img{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    object-fit:cover;
+    display:block;
+    z-index:0;
+  }
+  .product-screen.placeholder{background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(37,99,235,0.06),rgba(6,182,212,0.05));}
+
+  /* Hover overlay for placeholders */
+  .product-screen.placeholder::after{
+    content:'Click to view ↗';
+    position:absolute;inset:0;
+    background:rgba(6,182,212,0.12);
+    display:flex;align-items:center;justify-content:center;
+    font-size:0.78rem;font-weight:700;color:#67e8f9;
+    opacity:0;transition:opacity 0.2s;
+    letter-spacing:0.05em;
+  }
+
+  /* Real image hover overlay */
+  .product-screen:not(.placeholder)::after{
+    content:'View Full Size ↗';
+    position:absolute;inset:0;
+    z-index:1;
+    background:rgba(0,0,0,0.5);
+    display:flex;align-items:center;justify-content:center;
+    font-size:0.85rem;font-weight:700;color:white;
+    opacity:0;transition:opacity 0.2s;
+    pointer-events:none;
+  }
+  .product-card:hover .product-screen:not(.placeholder)::after{opacity:1;}
+
+  .ph-icon{font-size:2.25rem;opacity:0.7;position:relative;z-index:1;}
+  .ph-label{font-size:0.72rem;font-weight:600;color:var(--text-muted);text-align:center;padding:0 0.5rem;position:relative;z-index:1;}
+  .ph-badge{position:absolute;top:0.6rem;right:0.6rem;font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;background:rgba(6,182,212,0.15);border:1px solid rgba(6,182,212,0.3);color:#67e8f9;padding:0.2rem 0.5rem;border-radius:4px;}
+  .product-caption{padding:0.75rem 1rem;border-top:1px solid var(--border);display:flex;align-items:center;gap:0.5rem;}
+  .pc-dot{width:7px;height:7px;border-radius:50%;background:var(--gradient);flex-shrink:0;}
+  .pc-name{font-size:0.8rem;font-weight:600;color:var(--text-secondary);transition:color 0.2s;}
+
+  /* IMPACT ROW */
+  .impact-row{display:flex;gap:0.75rem;flex-wrap:wrap;padding:1.25rem 1.75rem;border-top:1px solid var(--border);background:rgba(124,58,237,0.03);}
+  .impact-chip{display:inline-flex;align-items:center;gap:0.4rem;background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.2);border-radius:100px;padding:0.35rem 0.85rem;font-size:0.75rem;font-weight:700;color:#c4b5fd;}
+  .impact-chip.green{background:rgba(16,185,129,0.1);border-color:rgba(16,185,129,0.2);color:#6ee7b7;}
+  .impact-chip.blue{background:rgba(37,99,235,0.1);border-color:rgba(37,99,235,0.2);color:#93c5fd;}
+  .impact-chip.cyan{background:rgba(6,182,212,0.1);border-color:rgba(6,182,212,0.2);color:#67e8f9;}
+
+  /* PROJECTS */
+  #projects{background:var(--bg-primary);}
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;}
+  .proj-card{
+    background:var(--bg-card);border:1px solid var(--border);border-radius:20px;
+    padding:1.5rem 1.75rem;display:flex;flex-direction:column;gap:1rem;min-height:100%;
+    transition:border-color 0.3s,transform 0.25s,box-shadow 0.25s;
+  }
+  .proj-card:hover{
+    border-color:rgba(124,58,237,0.45);
+    transform:translateY(-4px);
+    box-shadow:0 12px 40px rgba(124,58,237,0.12);
+  }
+  .proj-head{display:flex;align-items:flex-start;gap:1rem;}
+  .proj-icon{font-size:2rem;line-height:1;flex-shrink:0;}
+  .proj-meta{min-width:0;}
+  .proj-title{font-size:1.05rem;font-weight:800;line-height:1.25;margin-bottom:0.2rem;}
+  .proj-context{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted);}
+  .proj-desc{font-size:0.875rem;color:var(--text-secondary);line-height:1.65;flex:1;}
+  .proj-tags{display:flex;flex-wrap:wrap;gap:0.45rem;}
+  .proj-tag{font-size:0.68rem;padding:0.22rem 0.65rem;border-radius:100px;background:rgba(37,99,235,0.12);border:1px solid rgba(37,99,235,0.22);color:#93c5fd;font-weight:600;}
+  .proj-footer{display:flex;flex-wrap:wrap;gap:0.65rem;margin-top:auto;padding-top:0.35rem;}
+  .proj-link{
+    display:inline-flex;align-items:center;gap:0.35rem;font-size:0.78rem;font-weight:700;
+    padding:0.5rem 1.1rem;border-radius:100px;text-decoration:none;
+    transition:opacity 0.2s,transform 0.2s,border-color 0.2s,background 0.2s,color 0.2s;
+  }
+  .proj-link.primary{background:var(--gradient);color:white;}
+  .proj-link.primary:hover{opacity:0.9;transform:translateY(-1px);}
+  .proj-link.secondary{background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--text-secondary);}
+  .proj-link.secondary:hover{border-color:rgba(124,58,237,0.45);background:rgba(124,58,237,0.08);color:var(--text-primary);}
+  button.proj-link{border:none;font:inherit;cursor:pointer;font-family:inherit;}
+
+  /* ═══════════════════════════════════════════
+     WHATSAPP PREVIEW (pan + zoom)
+  ═══════════════════════════════════════════ */
+  .wa-overlay{
+    position:fixed;inset:0;z-index:10000;
+    background:rgba(4,4,16,0.97);
+    backdrop-filter:blur(16px);
+    display:flex;align-items:stretch;justify-content:stretch;
+    opacity:0;pointer-events:none;
+    transition:opacity 0.25s ease;
+    padding:env(safe-area-inset-top,0) env(safe-area-inset-right,0) env(safe-area-inset-bottom,0) env(safe-area-inset-left,0);
+  }
+  .wa-overlay.active{opacity:1;pointer-events:all;}
+  .wa-modal{
+    position:relative;
+    flex:1;
+    width:100%;
+    min-height:0;
+    max-height:100dvh;
+    background:rgba(13,11,30,0.98);
+    border:none;
+    border-radius:0;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    box-shadow:none;
+  }
+  .wa-topbar{
+    flex-shrink:0;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:1rem;padding:0.85rem 1rem;
+    padding-left:max(1rem,env(safe-area-inset-left));
+    padding-right:max(1rem,env(safe-area-inset-right));
+    border-bottom:1px solid var(--border);
+    background:rgba(37,211,102,0.06);
+  }
+  .wa-title{font-size:0.82rem;font-weight:700;color:#86efac;text-transform:uppercase;letter-spacing:0.06em;}
+  .wa-hint{
+    flex-shrink:0;
+    font-size:0.72rem;color:var(--text-muted);
+    padding:0.4rem 1rem;
+    text-align:center;
+  }
+  .wa-stage-wrap{
+    position:relative;
+    flex:1;
+    min-height:0;
+    display:flex;
+    align-items:stretch;
+    padding:0;
+  }
+  .wa-viewport{
+    flex:1;
+    position:relative;
+    width:100%;
+    min-height:0;
+    margin:0;
+    border-radius:0;
+    overflow:hidden;
+    background:rgba(6,6,20,0.95);
+    border:none;
+    touch-action:none;
+    cursor:grab;
+    user-select:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .wa-viewport.is-panning{cursor:grabbing;}
+  .wa-pan-inner{
+    position:relative;
+    transform-origin:center center;
+    will-change:transform;
+  }
+  .wa-pan-inner img{
+    display:block;
+    width:auto;
+    height:auto;
+    pointer-events:none;
+  }
+  /* Tall phone / portrait frame — width-led */
+  .wa-pan-inner img.wa-img--portrait{
+    width:min(1920px,100vw);
+    max-width:100%;
+    height:auto;
+    max-height:none;
+  }
+  /* Ultra-wide strips (e.g. 12920×3202 stitched flows) — height-led so type stays readable; pan sideways */
+  .wa-pan-inner img.wa-img--panorama{
+    width:auto;
+    max-width:none;
+    height:min(88dvh,calc(100dvh - 11rem));
+    max-height:min(88dvh,calc(100dvh - 11rem));
+  }
+  .wa-nav.wa-nav{
+    position:absolute;top:50%;transform:translateY(-50%);
+    z-index:3;margin:0;
+  }
+  .wa-prev{left:max(0.5rem,env(safe-area-inset-left));}
+  .wa-next{right:max(0.5rem,env(safe-area-inset-right));}
+  .wa-dots{
+    flex-shrink:0;
+    display:flex;gap:0.45rem;justify-content:center;
+    padding:0.5rem 1.25rem 0.5rem;
+  }
+  .wa-dot{
+    width:8px;height:8px;border-radius:50%;
+    background:rgba(255,255,255,0.15);cursor:pointer;
+    transition:background 0.2s,transform 0.2s;
+  }
+  .wa-dot.active{background:#22c55e;transform:scale(1.25);}
+  .wa-toolbar{
+    flex-shrink:0;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:1rem;padding:0.65rem 1.25rem max(0.85rem,env(safe-area-inset-bottom));
+    border-top:1px solid var(--border);
+    background:rgba(6,6,20,0.75);
+  }
+  .wa-reset{
+    font-size:0.75rem;font-weight:700;
+    padding:0.45rem 0.9rem;border-radius:8px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,0.04);
+    color:var(--text-secondary);
+    cursor:pointer;
+    transition:border-color 0.2s,background 0.2s,color 0.2s;
+  }
+  .wa-reset:hover{border-color:rgba(124,58,237,0.45);color:var(--text-primary);background:rgba(124,58,237,0.1);}
+  .wa-counter{font-size:0.75rem;color:var(--text-muted);font-weight:600;}
+
+  /* ═══════════════════════════════════════════
+     LIGHTBOX
+  ═══════════════════════════════════════════ */
+  .lightbox-overlay{
+    position:fixed;inset:0;z-index:9999;
+    background:rgba(4,4,16,0.96);
+    backdrop-filter:blur(16px);
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;pointer-events:none;
+    transition:opacity 0.3s ease;
+  }
+  .lightbox-overlay.active{opacity:1;pointer-events:all;}
+
+  .lb-container{
+    position:relative;
+    width:min(860px,92vw);
+    background:rgba(13,11,30,0.95);
+    border:1px solid rgba(124,58,237,0.3);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 32px 80px rgba(0,0,0,0.7),0 0 0 1px rgba(124,58,237,0.1);
+    transform:scale(0.94) translateY(16px);
+    transition:transform 0.3s ease;
+  }
+  .lightbox-overlay.active .lb-container{transform:scale(1) translateY(0);}
+
+  /* top bar */
+  .lb-topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:1rem 1.25rem;
+    border-bottom:1px solid var(--border);
+    background:rgba(124,58,237,0.06);
+  }
+  .lb-company{font-size:0.78rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:0.08em;}
+  .lb-counter{font-size:0.75rem;color:var(--text-muted);font-weight:600;}
+  .lb-close-btn{
+    width:32px;height:32px;border-radius:8px;
+    background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.25);
+    color:#fca5a5;font-size:1.1rem;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;transition:background 0.2s,transform 0.2s;
+    line-height:1;
+  }
+  .lb-close-btn:hover{background:rgba(239,68,68,0.25);transform:scale(1.1);}
+
+  /* image area */
+  .lb-image-area{
+    position:relative;
+    background:linear-gradient(135deg,rgba(124,58,237,0.06),rgba(6,182,212,0.04));
+    min-height:360px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .lb-image-area img{
+    width:100%;max-height:520px;
+    object-fit:contain;display:block;
+  }
+
+  /* placeholder view in lightbox */
+  .lb-placeholder{
+    width:100%;min-height:380px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:1.25rem;padding:3rem 2rem;
+    background:linear-gradient(135deg,rgba(124,58,237,0.07),rgba(37,99,235,0.05),rgba(6,182,212,0.04));
+  }
+  .lb-ph-icon{font-size:4rem;opacity:0.75;}
+  .lb-ph-title{font-size:1.25rem;font-weight:700;text-align:center;color:var(--text-primary);}
+  .lb-ph-sub{font-size:0.875rem;color:var(--text-muted);text-align:center;max-width:380px;line-height:1.6;}
+  .lb-ph-coming{
+    display:inline-flex;align-items:center;gap:0.5rem;
+    background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.25);
+    color:#67e8f9;font-size:0.75rem;font-weight:700;
+    padding:0.4rem 1rem;border-radius:100px;letter-spacing:0.05em;
+  }
+
+  /* nav arrows */
+  .lb-nav{
+    position:absolute;top:50%;
+    width:40px;height:40px;border-radius:50%;
+    background:rgba(13,11,30,0.9);border:1px solid var(--border);
+    color:var(--text-primary);font-size:1.1rem;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;transform:translateY(-50%);
+    transition:background 0.2s,border-color 0.2s,transform 0.2s;
+    user-select:none;z-index:2;
+  }
+  .lb-nav:hover{background:rgba(124,58,237,0.3);border-color:rgba(124,58,237,0.5);transform:translateY(-50%) scale(1.1);}
+  .lb-nav.disabled{opacity:0.2;pointer-events:none;}
+  .lb-prev{left:0.75rem;}
+  .lb-next{right:0.75rem;}
+
+  /* footer */
+  .lb-footer{
+    padding:1rem 1.25rem;
+    border-top:1px solid var(--border);
+    display:flex;align-items:center;justify-content:space-between;
+    gap:1rem;
+    background:rgba(6,6,20,0.6);
+  }
+  .lb-caption-text{font-size:0.875rem;font-weight:600;color:var(--text-primary);}
+  .lb-caption-sub{font-size:0.75rem;color:var(--text-muted);margin-top:0.15rem;}
+  .lb-visit-link{
+    display:inline-flex;align-items:center;gap:0.4rem;
+    background:var(--gradient);color:white;
+    padding:0.6rem 1.25rem;border-radius:8px;
+    text-decoration:none;font-weight:700;font-size:0.82rem;
+    transition:opacity 0.2s,transform 0.2s;
+    white-space:nowrap;flex-shrink:0;
+  }
+  .lb-visit-link:hover{opacity:0.85;transform:translateY(-1px);}
+  .lb-visit-link.hidden{display:none;}
+
+  /* dots */
+  .lb-dots{
+    display:flex;gap:0.4rem;align-items:center;
+    padding:0.75rem 1.25rem;justify-content:center;
+    border-top:1px solid var(--border);background:rgba(6,6,20,0.4);
+  }
+  .lb-dot{
+    width:7px;height:7px;border-radius:50%;
+    background:rgba(255,255,255,0.15);cursor:pointer;
+    transition:background 0.2s,transform 0.2s;
+  }
+  .lb-dot.active{background:var(--purple);transform:scale(1.3);}
+  .lb-dot:hover{background:rgba(124,58,237,0.5);}
+
+  /* TECH STACK */
+  .tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:1rem;}
+  .tech-item{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center;transition:border-color 0.3s,background 0.3s,transform 0.2s;}
+  .tech-item:hover{border-color:rgba(124,58,237,0.4);background:var(--bg-card-hover);transform:translateY(-3px);}
+  .tech-icon{font-size:1.75rem;margin-bottom:0.5rem;display:block;}
+  .tech-name{font-size:0.78rem;font-weight:600;color:var(--text-secondary);}
+
+  /* AI VISION */
+  #ai-vision{background:var(--bg-secondary);}
+  .ai-intro{background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(37,99,235,0.08),rgba(6,182,212,0.06));border:1px solid rgba(124,58,237,0.2);border-radius:20px;padding:2rem;margin-bottom:3rem;position:relative;overflow:hidden;}
+  .ai-intro::before{content:'🤖';position:absolute;right:2rem;top:50%;transform:translateY(-50%);font-size:5rem;opacity:0.08;}
+  .ai-intro p{font-size:1.05rem;color:var(--text-secondary);line-height:1.8;max-width:700px;}
+  .ai-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+  .ai-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;transition:border-color 0.3s,transform 0.2s;}
+  .ai-card:hover{border-color:rgba(6,182,212,0.4);transform:translateY(-4px);}
+  .ai-card-icon{font-size:2rem;margin-bottom:1rem;display:block;}
+  .ai-card h4{font-size:0.95rem;font-weight:700;margin-bottom:0.5rem;}
+  .ai-card p{font-size:0.82rem;color:var(--text-muted);line-height:1.6;}
+  .ai-benefit{display:inline-block;margin-top:0.75rem;font-size:0.75rem;font-weight:700;color:#22d3ee;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.2);padding:0.2rem 0.6rem;border-radius:100px;}
+
+  /* BLUEPRINT */
+  .blueprint-phases{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:3rem;}
+  .phase-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:1.75rem;position:relative;overflow:hidden;transition:border-color 0.3s,transform 0.2s;}
+  .phase-card:hover{border-color:rgba(124,58,237,0.4);transform:translateY(-4px);}
+  .phase-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+  .phase-card.p1::before{background:linear-gradient(90deg,#7c3aed,#a78bfa);}
+  .phase-card.p2::before{background:linear-gradient(90deg,#2563eb,#60a5fa);}
+  .phase-card.p3::before{background:linear-gradient(90deg,#06b6d4,#22d3ee);}
+  .phase-number{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.25rem;}
+  .p1 .phase-number{color:#a78bfa;} .p2 .phase-number{color:#60a5fa;} .p3 .phase-number{color:#22d3ee;}
+  .phase-title{font-size:1.1rem;font-weight:700;margin-bottom:1rem;}
+  .phase-items{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+  .phase-items li{font-size:0.83rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:0.5rem;line-height:1.5;}
+  .phase-items li::before{content:'→';color:var(--text-muted);flex-shrink:0;margin-top:0.05rem;}
+  .principles-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+  .principle-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center;transition:border-color 0.3s;}
+  .principle-card:hover{border-color:rgba(124,58,237,0.3);}
+  .p-icon{font-size:1.75rem;margin-bottom:0.75rem;display:block;}
+  .p-title{font-size:0.85rem;font-weight:700;margin-bottom:0.35rem;}
+  .p-desc{font-size:0.78rem;color:var(--text-muted);line-height:1.5;}
+
+  /* CONTACT */
+  #contact{background:var(--bg-secondary);}
+  .contact-card{background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(37,99,235,0.08));border:1px solid rgba(124,58,237,0.25);border-radius:24px;padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;}
+  .contact-text h3{font-size:1.6rem;font-weight:800;margin-bottom:0.75rem;}
+  .contact-text p{font-size:0.9rem;color:var(--text-secondary);line-height:1.7;}
+  .contact-links{display:flex;flex-direction:column;gap:1rem;}
+  .contact-link{display:flex;align-items:center;gap:1rem;text-decoration:none;color:var(--text-secondary);padding:1rem 1.25rem;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:12px;transition:border-color 0.2s,background 0.2s,color 0.2s;font-size:0.875rem;}
+  .contact-link:hover{border-color:rgba(124,58,237,0.4);background:rgba(124,58,237,0.08);color:var(--text-primary);}
+  .cl-icon{width:36px;height:36px;border-radius:8px;background:rgba(124,58,237,0.15);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+
+  footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-size:0.8rem;color:var(--text-muted);}
+  .fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+  .fade-in.visible{opacity:1;transform:translateY(0);}
+
+  @media(max-width:900px){
+    .hero{padding:6rem 2rem 3rem;}
+    .hero-content{grid-template-columns:1fr;gap:3rem;text-align:center;}
+    .hero-tagline{margin:0 auto 2.5rem;}
+    .hero-actions{justify-content:center;}
+    .hero-photo-wrap{order:-1;}
+    section{padding:4rem 2rem;}
+    .stats-grid{grid-template-columns:repeat(2,1fr);}
+    .about-grid{grid-template-columns:1fr;}
+    .ai-cards{grid-template-columns:1fr 1fr;}
+    .blueprint-phases{grid-template-columns:1fr;}
+    .principles-grid{grid-template-columns:repeat(2,1fr);}
+    .contact-card{grid-template-columns:1fr;gap:2rem;}
+    .fb-left,.fb-right,.fb-bottom{display:none;}
+    .nav-links{display:none;}
+    .transformation-row{grid-template-columns:1fr;}
+    .transform-panel.problem{border-right:none;border-bottom:1px solid var(--border);}
+    .products-grid.cols-3,.products-grid.cols-4{grid-template-columns:1fr 1fr;}
+    .exp-visit-btn{font-size:0.7rem;padding:0.35rem 0.7rem;}
+    /* Experience card header: allow wrap before tiny screens */
+    .exp-header{flex-wrap:wrap;row-gap:0.65rem;}
+    .exp-header-right{flex-wrap:wrap;justify-content:flex-end;max-width:100%;gap:0.5rem;}
+    .exp-period{white-space:normal;}
+  }
+  @media(max-width:600px){
+    .ai-cards{grid-template-columns:1fr;}
+    .stats-grid{grid-template-columns:1fr 1fr;}
+    .tech-grid{grid-template-columns:repeat(3,1fr);}
+    .photo-ring{width:240px;height:240px;}
+    .products-grid.cols-2,.products-grid.cols-3,.products-grid.cols-4{grid-template-columns:1fr;}
+    .exp-visit-btn span{display:none;}
+    .projects-grid{grid-template-columns:1fr;}
+    /* Experience header: stack meta row + full-width actions row */
+    .exp-header{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      grid-template-areas:
+        "logo meta"
+        "actions actions";
+      column-gap:0.85rem;
+      row-gap:0.65rem;
+      align-items:start;
+      padding:1rem 1.1rem;
+    }
+    .exp-logo{grid-area:logo;width:44px;height:44px;font-size:1rem;border-radius:10px;}
+    .exp-meta{grid-area:meta;min-width:0;}
+    .exp-company{font-size:0.98rem;line-height:1.25;word-wrap:break-word;overflow-wrap:anywhere;}
+    .exp-role{font-size:0.76rem;line-height:1.4;}
+    .exp-header-right{
+      grid-area:actions;
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap:0.5rem 0.65rem;
+      width:100%;
+      max-width:100%;
+      padding-top:0.35rem;
+      border-top:1px solid var(--border);
+    }
+    .exp-period{
+      order:-1;
+      flex:1 1 100%;
+      white-space:normal;
+      font-size:0.72rem;
+      line-height:1.35;
+      color:var(--text-muted);
+    }
+    .exp-visit-btn{font-size:0.68rem;padding:0.4rem 0.75rem;}
+    .exp-tags{padding:0 1.1rem 1rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Joshua Adebayo</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#ai-vision">AI Vision</a></li>
+    <li><a href="#team-blueprint">Team Blueprint</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge"><span class="dot"></span>About Me</div>
+      <h1>Joshua<br><span class="gradient-text">Adebayo</span></h1>
+      <div class="hero-subtitle">Chief Technology Officer &amp; Applied AI Engineer</div>
+      <p class="hero-tagline">10+ years building the systems businesses run on. I specialize in bringing structure to early-stage or rapidly scaling companies. I partner with founders to establish foundational engineering processes, recruit top-tier technical talent, and drive end-to-end product delivery. Beyond traditional engineering, I lead the integration of AI into core operations to future-proof the business and accelerate growth.</p>
+      <div class="hero-actions">
+        <a href="#experience" class="btn-primary">See What I've Built ↓</a>
+        <a href="#team-blueprint" class="btn-secondary">My Team Blueprint →</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <div class="photo-ring"><img src="assets/profile/joshua-profile-picture.png" alt="Joshua Adebayo"></div>
+      <div class="floating-badge fb-left"><div class="fb-val">10+</div>Years Experience</div>
+      <div class="floating-badge fb-right"><div class="fb-val">AI</div>LangGraph + MCP</div>
+      <div class="floating-badge fb-bottom"><div class="fb-val">Payments</div>Secure Wallet Systems</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-label">About Me</div>
+    <h2>I Build Products <span class="gradient-text">and the Teams</span> That Build Them</h2>
+    <div class="stats-grid fade-in">
+      <div class="stat-card"><div class="stat-number">10+</div><div class="stat-label">Years of Engineering</div></div>
+      <div class="stat-card"><div class="stat-number">10+</div><div class="stat-label">Engineers Led</div></div>
+      <div class="stat-card"><div class="stat-number">20+</div><div class="stat-label">Products Delivered from Zero</div></div>
+      <div class="stat-card"><div class="stat-number">HIPAA<br>GDPR</div><div class="stat-label">Compliance Expertise</div></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <p>I bridge the gap between business strategy and technical execution. By working closely with stakeholders to understand core processes and customer needs, I architect and deliver products that drive tangible growth. I focus on facilitating integrations, automating workflows, and orchestrating efficient engineering processes. Ultimately, I don’t just write code; I think critically, architect scalable systems, build high-performing teams, and ship reliable products.</p>
+        <p>A defining example of this is my tenure at Clafiya. Joining a true zero-to-one environment with no product, team, or structure, I built all three from the ground up. After delivering their v1 product, I drove major infrastructure and business expansions. I re-engineered their core financial architecture, replacing a legacy subscription system with a dynamic, real-time wallet platform. I orchestrated complex financial logic to handle payments and interest accruals across multiple systems, successfully integrating <b>Piggyvest Wallets</b> and <b>Virtual Accounts</b>. Furthermore, I architected the high-performing APIs that now power telemedicine integrations for key B2B partners, including <strong>AWADOC</strong>, <strong>Synlab</strong>, and <strong>Pharmarun</strong>.</p>
+        <a href="mailto:ajosavboy@gmail.com" class="btn-primary" style="margin-top:1rem;display:inline-flex;">Get in Touch →</a>
+      </div>
+      <div class="about-highlights fade-in">
+        <div class="highlight-item"><div class="hi-icon">🏗️</div><div><div class="hi-title">Zero-to-One Builder</div><div class="hi-desc">Delivered complete products from scratch — architecture, team structure, CI/CD, and deployment at multiple companies.</div></div></div>
+        <div class="highlight-item"><div class="hi-icon">🤖</div><div><div class="hi-title">Production AI Engineer</div><div class="hi-desc">Deployed LangGraph agents, built custom MCP servers, and implemented intelligent automation cutting wait times by 40%+.</div></div></div>
+        <div class="highlight-item"><div class="hi-icon">🔐</div><div><div class="hi-title">Compliance-First</div><div class="hi-desc">HIPAA & NDPR/GDPR compliant systems, encryption, audit logs, and RBAC; I built for regulators and enterprise clients.</div></div></div>
+        <div class="highlight-item"><div class="hi-icon">👥</div><div><div class="hi-title">Engineering Culture Builder</div><div class="hi-desc">Established dev processes, sprint rituals, code review culture, and tooling for teams of 10+ from the ground up.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-label">Work History</div>
+    <h2>The Problems I <span class="gradient-text">Walked Into</span> and Solved</h2>
+    <p class="section-desc">Every role below is a transformation story. Click any card to read the full picture, then click a product image to view it, or hit Visit Site to see it live.</p>
+    <div class="exp-timeline">
+
+<!-- ══════════════════ CLAFIYA ══════════════════ -->
+<div class="exp-card" onclick="toggleExp(this)">
+  <div class="exp-header">
+    <div class="exp-logo" style="background:linear-gradient(135deg,#7c3aed,#2563eb);">C</div>
+    <div class="exp-meta">
+      <div class="exp-company">Clafiya</div>
+      <div class="exp-role">Technical Lead · Lagos, Nigeria</div>
+    </div>
+    <div class="exp-header-right">
+      <div class="exp-period">May 2022 – Present</div>
+      <a href="https://www.clafiya.com" target="_blank" rel="noopener" class="exp-visit-btn" onclick="event.stopPropagation()">Visit Site ↗</a>
+      <div class="exp-toggle">▼</div>
+    </div>
+  </div>
+  <div class="exp-tags">
+    <span class="exp-tag">Laravel</span><span class="exp-tag">NestJS</span><span class="exp-tag">Kafka</span>
+    <span class="exp-tag">Redis</span><span class="exp-tag">LangGraph</span><span class="exp-tag">AWS</span>
+    <span class="exp-tag">Docker</span><span class="exp-tag">HIPAA</span>
+  </div>
+  <div class="exp-details">
+    <div class="transformation-row">
+      <div class="transform-panel problem"><div class="tp-label">⚠ The Problem I Walked Into</div><p class="tp-text">Clafiya had <strong>no product</strong>, no engineering team, and no technical structure. The business model relied on a <strong>manual subscription approach</strong> that couldn't scale, couldn't handle real-time transactions, and created constant reconciliation headaches. There was no codebase to inherit just a vision and a structured operation team that clears understood what they wanted.</p></div>
+      <div class="transform-panel solution"><div class="tp-label">✦ What I Built &amp; Changed</div><p class="tp-text">I <strong>built the engineering team from zero;</strong> hiring, structuring squads, and establishing the development process. Delivered their <strong>first product</strong> end-to-end. As the company grew, I evolved their model entirely, designing and shipping a <strong>structured wallet payment system</strong> with real-time transaction sync, interest accrual, and multi-provider integration. Then deployed <strong>AI agents</strong> to automate complex healthcare workflows.</p></div>
+    </div>
+    <div class="achievements-wrap">
+      <div class="ach-section-label">Key Deliveries</div>
+      <div class="achievements-list">
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>Established the entire engineering structure</strong>: hired and led 10+ engineers, introduced sprint planning and daily standup, code reviews, CI/CD pipelines, and documentation standards from scratch.</div></div>
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>Replaced subscription model with a structured wallet system</strong>: architected real-time payment sync across multiple third-party providers, interest accrual logic, and HIPAA-compliant transaction records.</div></div>
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>Deployed AI agents</strong> and a custom MCP server for secure tool-calling, cutting consultation wait times by <span class="impact-pill">-40%</span></div></div>
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>Configured Kafka</strong> for event-driven microservices. Used <strong>SSE</strong> for real-time balance and transaction updates. Reduced incident response time by <span class="impact-pill">-20%</span></div></div>
+      </div>
+    </div>
+    <div class="products-wrap">
+      <div class="products-label">📸 Products Delivered <span class="click-hint">— click any image to preview</span></div>
+      <div class="products-grid cols-4">
+        <div class="product-card" data-slot="true" data-group="clafiya" data-url="https://www.clafiya.com" data-caption="HSA dashboard" onclick="openLightbox(this)">
+                <div class="product-screen">
+                  <img src="assets/work-experience/clafiya/hsa-dashboard.png" alt="HSA dashboard">
+                </div>
+                <div class="product-caption"><div class="pc-dot"></div><div class="pc-name">HSA dashboard</div></div>
+              </div>
+        <div class="product-card" data-slot="true" data-group="clafiya" data-url="https://www.clafiya.com" data-caption="Wellness hub" onclick="openLightbox(this)">
+                <div class="product-screen">
+                  <img src="assets/work-experience/clafiya/wellness-hub.png" alt="Wellness hub">
+                </div>
+                <div class="product-caption"><div class="pc-dot"></div><div class="pc-name">Wellness hub</div></div>
+              </div>
+        <div class="product-card" data-slot="true" data-group="clafiya" data-url="https://www.clafiya.com" data-caption="Wellness hub — payments" onclick="openLightbox(this)">
+                <div class="product-screen">
+                  <img src="assets/work-experience/clafiya/wellness-hub-payment.png" alt="Wellness hub — payments">
+                </div>
+                <div class="product-caption"><div class="pc-dot"></div><div class="pc-name">Wellness hub — payments</div></div>
+              </div>
+        <div class="product-card" data-slot="true" data-group="clafiya" data-url="https://www.clafiya.com" data-caption="AI chat" onclick="openLightbox(this)">
+                <div class="product-screen">
+                  <img src="assets/work-experience/clafiya/ai-chat.png" alt="AI chat">
+                </div>
+                <div class="product-caption"><div class="pc-dot"></div><div class="pc-name">AI chat</div></div>
+              </div>
+      </div>
+    </div>
+    <div class="impact-row">
+      <span class="impact-chip">🧑‍💻 10+ engineers built &amp; led</span>
+      <span class="impact-chip green">✓ First product —> zero to launch</span>
+      <span class="impact-chip cyan">⚡ -40% consultation wait time</span>
+      <span class="impact-chip blue">📊 -20% incident response time</span>
+      <span class="impact-chip">🤖 AI agents in production</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ PROXIFY ══════════════════ -->
+<div class="exp-card" onclick="toggleExp(this)">
+  <div class="exp-header">
+    <div class="exp-logo exp-logo--photo" aria-hidden="true">
+      <img src="assets/work-experience/proxify/proxify-profile.png" alt="">
+    </div>
+    <div class="exp-meta">
+      <div class="exp-company">Proxify</div>
+      <div class="exp-role">Consultant · Systems Optimization · Remote</div>
+    </div>
+    <div class="exp-header-right">
+      <div class="exp-period">2025 – Present</div>
+      <a href="https://proxify.io" target="_blank" rel="noopener" class="exp-visit-btn" onclick="event.stopPropagation()">Visit Site ↗</a>
+      <div class="exp-toggle">▼</div>
+    </div>
+  </div>
+  <div class="exp-tags">
+    <span class="exp-tag">Systems design</span><span class="exp-tag">Performance</span><span class="exp-tag">Automation</span>
+    <span class="exp-tag">Integrations</span><span class="exp-tag">APIs</span><span class="exp-tag">Data pipelines</span>
+  </div>
+  <div class="exp-details">
+    <div class="transformation-row">
+      <div class="transform-panel problem"><div class="tp-label">⚠ The Problem I Walked Into</div><p class="tp-text">Partner teams needed <strong>deeper systems optimization</strong> across different domains: slow workflows, manual operational steps, and integrations that did not scale as usage grew. One engagement with <strong>Crop Consults</strong> centred on <strong>agricultural operations</strong> where planting monitoring and harvest coordination still relied heavily on manual tracking.</p></div>
+      <div class="transform-panel solution"><div class="tp-label">✦ What I Built &amp; Changed</div><p class="tp-text">As a consultant on Proxify’s network, I focused on <strong>systems optimization</strong> for multiple partners. With <strong>Crop Consults</strong>, I helped <strong>automate crop planting monitoring</strong> and <strong>plant harvesting workflows</strong>, replacing brittle manual steps with clearer data flows and automation so teams could operate with less friction and better visibility end-to-end.</p></div>
+    </div>
+    <div class="achievements-wrap">
+      <div class="ach-section-label">Key Deliveries</div>
+      <div class="achievements-list">
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>Consulting via Proxify</strong> — partnered with client engineering and product stakeholders to tighten architecture, improve reliability, and speed up critical paths.</div></div>
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>Crop Consults</strong> — automated <strong>planting monitoring</strong> and <strong>harvest</strong> processes so agronomy teams spend less time on spreadsheets and handoffs.</div></div>
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>Cross-partner work</strong> — applied the same optimization mindset across different stacks and business contexts, always anchored in measurable operational outcomes.</div></div>
+      </div>
+    </div>
+    <div class="products-wrap">
+      <div class="products-label">📸 Partner Work <span class="click-hint">— click any image to preview</span></div>
+      <div class="products-grid cols-2">
+        <div class="product-card" data-slot="true" data-group="proxify" data-url="https://proxify.io" data-caption="Proxify check-in" onclick="openLightbox(this)">
+                <div class="product-screen">
+                  <img src="assets/work-experience/proxify/proxify-checkin.png" alt="Proxify check-in">
+                </div>
+                <div class="product-caption"><div class="pc-dot"></div><div class="pc-name">Systems optimization · Partner delivery</div></div>
+              </div>
+        <div class="product-card" data-slot="true" data-group="proxify" data-url="https://proxify.io" data-caption="Proxify check-in (week view)" onclick="openLightbox(this)">
+                <div class="product-screen">
+                  <img src="assets/work-experience/proxify/proxify-checkin-2.png" alt="Proxify check-in week view">
+                </div>
+                <div class="product-caption"><div class="pc-dot"></div><div class="pc-name">Crop Consults · Ops automation</div></div>
+              </div>
+      </div>
+    </div>
+    <div class="impact-row">
+      <span class="impact-chip">🤝 Proxify network consultant</span>
+      <span class="impact-chip green">✓ Multi-partner delivery</span>
+      <span class="impact-chip cyan">🌾 Agri ops automation</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ SEAMLESSHR ══════════════════ -->
+<div class="exp-card" onclick="toggleExp(this)">
+  <div class="exp-header">
+    <div class="exp-logo" style="background:linear-gradient(135deg,#059669,#2563eb);">SH</div>
+    <div class="exp-meta">
+      <div class="exp-company">SeamlessHR</div>
+      <div class="exp-role">Senior Backend Engineer · Lagos, Nigeria</div>
+    </div>
+    <div class="exp-header-right">
+      <div class="exp-period">Sep. 2021 – Sep. 2022</div>
+      <a href="https://www.seamlesshr.com" target="_blank" rel="noopener" class="exp-visit-btn" onclick="event.stopPropagation()">Visit Site ↗</a>
+      <div class="exp-toggle">▼</div>
+    </div>
+  </div>
+  <div class="exp-tags">
+    <span class="exp-tag">Laravel</span><span class="exp-tag">Typescript</span><span class="exp-tag">Lamda</span><span class="exp-tag">RabbitMQ</span><span class="exp-tag">MySQL</span>
+    <span class="exp-tag">Redis</span><span class="exp-tag">SOA</span><span class="exp-tag">Pest / PHPUnit</span><span class="exp-tag">Kafka</span>
+  </div>
+  <div class="exp-details">
+    <div class="transformation-row">
+      <div class="transform-panel problem"><div class="tp-label">⚠ The Problem I Walked Into</div><p class="tp-text">SeamlessHR's Recruitment Management System was <strong>collapsing under its own scale</strong>. It couldn't handle the volume of candidate applications, searches were slow and database-intensive, and there was <strong>no proper auth structure</strong> to support multiple enterprise login types. The system needed a complete architectural overhaul.</p></div>
+      <div class="transform-panel solution"><div class="tp-label">✦ What I Built &amp; Changed</div><p class="tp-text">I led the <strong>complete backend rebuild of SeamlessHiring</strong>, re-architecting data pipelines, adding full-text search on millions of records, implementing <strong>layered caching with Redis</strong>, and applying the <strong>Strategy pattern to support 5 concurrent auth methods</strong>. Also built the international payroll fund transfer module.</p></div>
+    </div>
+    <div class="achievements-wrap">
+      <div class="ach-section-label">Key Deliveries</div>
+      <div class="achievements-list">
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>Rebuilt SeamlessHiring RMS from scratch</strong> — new architecture designed for enterprise scale, high-volume candidate pipelines, and multi-tenant access. The Module is currently used across 4 african countries (Nigeria, Ghana, Kenya and Rwanda)</div></div>
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>Optimised data processing pipelines</strong>, result: <span class="impact-pill">+60% throughput</span></div></div>
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>Full-text search</strong> on a massive talent pool, RBAC + audit logs, and Strategy-pattern multi-method auth (Google, LinkedIn, Email/Password, Candidate, Admin).</div></div>
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>Payroll</strong>: Worked on the payroll module that is responsible for processing salaries for different enterprise across Nigeria and other African Countries.</div></div>
+      </div>
+    </div>
+    <div class="products-wrap">
+      <div class="products-label">📸 Products Delivered <span class="click-hint">— click any image to preview</span></div>
+      <div class="products-grid cols-4">
+        <div class="product-card" data-slot="true" data-group="seamlesshr" data-url="https://www.seamlesshr.com" data-caption="Recruitment Dashboard" onclick="openLightbox(this)">
+                <div class="product-screen">
+                  <img src="assets/work-experience/shr/recruitment-dashboard.png" alt="Recruitment Dashboard">
+                </div>
+                <div class="product-caption"><div class="pc-dot"></div><div class="pc-name">Recruitment Dashboard</div></div>
+              </div>
+        <div class="product-card" data-slot="true" data-group="seamlesshr" data-url="https://www.seamlesshr.com" data-caption="Applicant tracking (ATS)" onclick="openLightbox(this)">
+                <div class="product-screen">
+                  <img src="assets/work-experience/shr/ats.png" alt="Applicant tracking (ATS)">
+                </div>
+                <div class="product-caption"><div class="pc-dot"></div><div class="pc-name">Applicant tracking (ATS)</div></div>
+              </div>
+        <div class="product-card" data-slot="true" data-group="seamlesshr" data-url="https://www.seamlesshr.com" data-caption="Integrations" onclick="openLightbox(this)">
+                <div class="product-screen">
+                  <img src="assets/work-experience/shr/integrations.png" alt="Integrations">
+                </div>
+                <div class="product-caption"><div class="pc-dot"></div><div class="pc-name">Integrations</div></div>
+              </div>
+        <div class="product-card" data-slot="true" data-group="seamlesshr" data-url="https://www.seamlesshr.com" data-caption="Recruitment workflows" onclick="openLightbox(this)">
+                <div class="product-screen">
+                  <img src="assets/work-experience/shr/workflows.png" alt="Recruitment workflows">
+                </div>
+                <div class="product-caption"><div class="pc-dot"></div><div class="pc-name">Recruitment workflows</div></div>
+              </div>
+      </div>
+    </div>
+    <div class="impact-row">
+      <span class="impact-chip green">✓ +60% application throughput</span>
+      <span class="impact-chip">🔍 Full-text search on millions of records</span>
+      <span class="impact-chip blue">🔐 Enterprise RBAC + Audit Logs</span>
+      <span class="impact-chip cyan">🌍 International payroll module</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ CAUSES STRATEGY ══════════════════ -->
+<div class="exp-card" onclick="toggleExp(this)">
+  <div class="exp-header">
+    <div class="exp-logo" style="background:linear-gradient(135deg,#2563eb,#06b6d4);">CS</div>
+    <div class="exp-meta">
+      <div class="exp-company">Causes Strategy Partners</div>
+      <div class="exp-role">Senior Backend Engineer · New York, United States (Remote)</div>
+    </div>
+    <div class="exp-header-right">
+      <div class="exp-period">Feb 2022 – Oct. 2022</div>
+      <a href="https://causestrategypartners.com/" target="_blank" rel="noopener" class="exp-visit-btn" onclick="event.stopPropagation()">Visit Site ↗</a>
+      <div class="exp-toggle">▼</div>
+    </div>
+  </div>
+  <div class="exp-tags">
+    <span class="exp-tag">Laravel</span><span class="exp-tag">Vue.js</span>
+    <span class="exp-tag">Redis</span><span class="exp-tag">MySQL</span><span class="exp-tag">PHPUnit</span>
+  </div>
+  <div class="exp-details">
+    <div class="transformation-row">
+      <div class="transform-panel problem"><div class="tp-label">⚠ The Problem I Walked Into</div><p class="tp-text">V1 of the platform was <strong>monolithic and brittle</strong> — large exports crashed the server, data imports locked users out while processing, and onboarding flows for organisations, candidates, and partners were all <strong>tangled in the same untestable codebase</strong>. The team needed a V2 that could handle enterprise data volumes reliably.</p></div>
+      <div class="transform-panel solution"><div class="tp-label">✦ What I Built &amp; Changed</div><p class="tp-text">Re-architected the <strong>onboarding flows</strong> with clean separation by entity type. Engineered an <strong>async bulk export engine</strong> capable of handling any record volume without crashing, and a <strong>non-blocking import system</strong> that let users continue working while uploads processed. Co-built the <strong>Boardlead form package</strong> — a reusable component library across the entire product.</p></div>
+    </div>
+    <div class="achievements-wrap">
+      <div class="ach-section-label">Key Deliveries</div>
+      <div class="achievements-list">
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>Unlimited-volume async export</strong> — exports now queue, process, and deliver regardless of record count.</div></div>
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>Non-blocking client-side import</strong> — users upload and continue working; the server processes independently. Eliminated the biggest UX pain point.</div></div>
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>Boardlead form package</strong> — co-developed a standardised component library now used across the full product suite.</div></div>
+      </div>
+    </div>
+    <div class="products-wrap">
+      <div class="products-label">📸 Products Delivered <span class="click-hint">— click any image to preview</span></div>
+      <div class="products-grid cols-2">
+        <div class="product-card" data-slot="true" data-group="causes" data-url="https://causestrategypartners.com/" data-caption="Organisation Onboarding &amp; Dashboard" onclick="openLightbox(this)">
+                <div class="product-screen placeholder">
+                  <div class="ph-badge">placeholder</div>
+                  <div class="ph-icon">🏢</div>
+                  <div class="ph-label">Nonprofit Management<br>Platform V2</div>
+                </div>
+                <div class="product-caption"><div class="pc-dot"></div><div class="pc-name">Organisation Onboarding &amp; Dashboard</div></div>
+              </div>
+        <div class="product-card" data-slot="true" data-group="causes" data-url="https://causestrategypartners.com/" data-caption="Bulk Data Export &amp; Import System" onclick="openLightbox(this)">
+                <div class="product-screen placeholder">
+                  <div class="ph-badge">placeholder</div>
+                  <div class="ph-icon">📤</div>
+                  <div class="ph-label">Async Bulk Export<br>Engine</div>
+                </div>
+                <div class="product-caption"><div class="pc-dot"></div><div class="pc-name">Bulk Data Export &amp; Import System</div></div>
+              </div>
+      </div>
+    </div>
+    <div class="impact-row">
+      <span class="impact-chip green">✓ Unlimited-volume exports</span>
+      <span class="impact-chip cyan">⚡ Non-blocking async imports</span>
+      <span class="impact-chip blue">📦 Boardlead component library shipped</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ RENMONEY ══════════════════ -->
+<div class="exp-card" onclick="toggleExp(this)">
+  <div class="exp-header">
+    <div class="exp-logo exp-logo--photo" aria-hidden="true">
+      <img src="assets/work-experience/renmoney/renmoney-website.png" alt="">
+    </div>
+    <div class="exp-meta">
+      <div class="exp-company">RenMoney</div>
+      <div class="exp-role">Backend Engineer &amp; Support Engineer · Lagos, Nigeria</div>
+    </div>
+    <div class="exp-header-right">
+      <div class="exp-period">Sep 2020 – Dec 2021</div>
+      <a href="https://www.renmoney.com" target="_blank" rel="noopener" class="exp-visit-btn" onclick="event.stopPropagation()">Visit Site ↗</a>
+      <div class="exp-toggle">▼</div>
+    </div>
+  </div>
+  <div class="exp-tags">
+    <span class="exp-tag">PHP</span><span class="exp-tag">Laravel</span>
+    <span class="exp-tag">Mambu API</span><span class="exp-tag">MySQL</span><span class="exp-tag">Tier 2/3 Support</span>
+  </div>
+  <div class="exp-details">
+    <div class="transformation-row">
+      <div class="transform-panel problem"><div class="tp-label">⚠ The Problem I Walked Into</div><p class="tp-text">Loan application processing at RenMoney was <strong>largely manual</strong> — staff were reviewing and routing applications by hand, generating errors and bottlenecks. Leadership had <strong>no real-time visibility</strong> into the pipeline, and the Mambu Core Banking API was called directly from services without any abstraction, making the system <strong>fragile and hard to maintain</strong>. One of the biggest challenges was the lack of a centralised dashboard for loan applications processing. Only few people had access to the dashboard and it lowed down the process of loan application processing.</p></div>
+      <div class="transform-panel solution"><div class="tp-label">✦ What I Built &amp; Changed</div><p class="tp-text">Automated the end-to-end loan processing pipeline with <strong>custom middleware that allows customer care agents to review and process load applications</strong>, eliminating most manual steps. Built a <strong>centralised Admin Dashboard</strong> giving leadership live operational visibility. Created a <strong>custom API gateway middleware</strong> to abstract the Mambu Core Banking SASS solution; making the system stable, testable, and vendor-agnostic.</p></div>
+    </div>
+    <div class="achievements-wrap">
+      <div class="ach-section-label">Key Deliveries</div>
+      <div class="achievements-list">
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>Automated loan processing scripts</strong> — end-to-end pipeline automation drastically reduced manual processing time and error rates.</div></div>
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>Loan Operations Admin Dashboard</strong> — real-time visibility into sales pipeline, application status, and operational KPIs for leadership.</div></div>
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>Mambu API gateway middleware</strong> + <strong>Partner Integration Portal</strong> + <strong>multi-vendor Email API service</strong> with failover between providers.</div></div>
+      </div>
+    </div>
+    <div class="products-wrap">
+      <div class="products-label">📸 Products Delivered <span class="click-hint">— click any image to preview</span></div>
+      <div class="products-grid cols-3">
+        <div class="product-card" data-slot="true" data-group="renmoney" data-url="https://www.renmoney.com" data-caption="Loan Ops Dashboard" onclick="openLightbox(this)">
+                <div class="product-screen">
+                  <img src="assets/work-experience/renmoney/renmoney-payment-history.png" alt="Loan Ops Dashboard">
+                </div>
+                <div class="product-caption"><div class="pc-dot"></div><div class="pc-name">Loan Ops Dashboard</div></div>
+              </div>
+        <div class="product-card" data-slot="true" data-group="renmoney" data-url="https://www.renmoney.com" data-caption="Partner Integration Portal" onclick="openLightbox(this)">
+                <div class="product-screen">
+                  <img src="assets/work-experience/renmoney/renmoney-login.png" alt="Partner Integration Portal">
+                </div>
+                <div class="product-caption"><div class="pc-dot"></div><div class="pc-name">Partner Integration Portal</div></div>
+              </div>
+        <div class="product-card" data-slot="true" data-group="renmoney" data-url="https://www.renmoney.com" data-caption="Savings product" onclick="openLightbox(this)">
+                <div class="product-screen">
+                  <img src="assets/work-experience/renmoney/renmoney-savings.png" alt="Savings product">
+                </div>
+                <div class="product-caption"><div class="pc-dot"></div><div class="pc-name">Savings product</div></div>
+              </div>
+      </div>
+    </div>
+    <div class="impact-row">
+      <span class="impact-chip green">✓ Manual loan processing automated</span>
+      <span class="impact-chip">📊 Real-time ops visibility for leadership</span>
+      <span class="impact-chip blue">🔌 Mambu API abstracted &amp; decoupled</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ AFTJ DIGITAL ══════════════════ -->
+<div class="exp-card" onclick="toggleExp(this)">
+  <div class="exp-header">
+    <div class="exp-logo" style="background:linear-gradient(135deg,#7c3aed,#06b6d4);">AF</div>
+    <div class="exp-meta">
+      <div class="exp-company">AFTJ Digital</div>
+      <div class="exp-role">Senior Backend Engineer · New York, United States (Remote)</div>
+    </div>
+    <div class="exp-header-right">
+      <div class="exp-period">Sep 2021 – Dec 2021</div>
+      <span class="exp-visit-btn no-link">No Public URL</span>
+      <div class="exp-toggle">▼</div>
+    </div>
+  </div>
+  <div class="exp-tags">
+    <span class="exp-tag">Node.js</span><span class="exp-tag">RBAC</span>
+    <span class="exp-tag">OTP Auth</span><span class="exp-tag">Docker</span><span class="exp-tag">Mobile API</span>
+  </div>
+  <div class="exp-details">
+    <div class="transformation-row">
+      <div class="transform-panel problem"><div class="tp-label">⚠ The Problem I Walked Into</div><p class="tp-text">The 1automech platform needed a <strong>complete backend from scratch</strong> — there was no existing service, no API, and no admin tooling. Multiple user types (mechanics, customers, admins) needed different access levels, and the mobile app had <strong>no dedicated API layer</strong> to consume.</p></div>
+      <div class="transform-panel solution"><div class="tp-label">✦ What I Built &amp; Changed</div><p class="tp-text">Architected and delivered the <strong>entire backend service</strong> for 1automech — including a comprehensive Admin Dashboard, a dedicated <strong>Mobile API</strong>, RBAC-based access control for all user types, OTP authentication, and integrated SMS/Email notifications.</p></div>
+    </div>
+    <div class="achievements-wrap">
+      <div class="ach-section-label">Key Deliveries</div>
+      <div class="achievements-list">
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>Complete backend from zero</strong> — architected the 1automech platform backend with advanced service search filtering and scalable architecture.</div></div>
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>Admin Dashboard + Mobile API</strong> — dual surface coverage with RBAC for mechanics, customers, and admin user types.</div></div>
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>OTP auth + SMS/Email notifications</strong> — secure user verification and real-time alert system across the platform.</div></div>
+      </div>
+    </div>
+    <div class="impact-row">
+      <span class="impact-chip green">✓ Backend built from zero</span>
+      <span class="impact-chip blue">🔐 RBAC for multi-user types</span>
+      <span class="impact-chip cyan">📱 Mobile API shipped</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ CLOUDWARE ══════════════════ -->
+<div class="exp-card" onclick="toggleExp(this)">
+  <div class="exp-header">
+    <div class="exp-logo" style="background:linear-gradient(135deg,#0891b2,#059669);">CW</div>
+    <div class="exp-meta">
+      <div class="exp-company">Cloudware Technologies</div>
+      <div class="exp-role">Back-end Developer · Ibadan, Nigeria</div>
+    </div>
+    <div class="exp-header-right">
+      <div class="exp-period">Feb 2020 – Sep 2020</div>
+      <a href="https://https://cloudware.com.ng" target="_blank" rel="noopener" class="exp-visit-btn" onclick="event.stopPropagation()">Visit Site ↗</a>
+      <div class="exp-toggle">▼</div>
+    </div>
+  </div>
+  <div class="exp-tags">
+    <span class="exp-tag">PHP</span><span class="exp-tag">Laravel</span>
+    <span class="exp-tag">RabbitMQ</span><span class="exp-tag">MySQL</span><span class="exp-tag">jQuery</span>
+  </div>
+  <div class="exp-details">
+    <div class="transformation-row">
+      <div class="transform-panel problem"><div class="tp-label">⚠ The Problem I Walked Into</div><p class="tp-text">Two distinct platforms needed core systems built from scratch: <strong>AgFin</strong> (a banking app) needed financial processing modules — loan recollection, interest calculation, and disbursement. <strong>Spectrum Books</strong> had no digital e-learning infrastructure — no API, no licensing, and no analytics.</p></div>
+      <div class="transform-panel solution"><div class="tp-label">✦ What I Built &amp; Changed</div><p class="tp-text">Built <strong>AgFin's core financial modules</strong> — loan recollection, interest calculator, and disbursement engine. For Spectrum Books, developed a full <strong>e-learning API with EPUB uploads</strong> (processed async via RabbitMQ), book licensing, subscription-based access control, an <strong>analytics admin dashboard</strong>, and a complete user support portal.</p></div>
+    </div>
+    <div class="achievements-wrap">
+      <div class="ach-section-label">Key Deliveries</div>
+      <div class="achievements-list">
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>AgFin banking modules</strong> — loan recollection, interest calculator, and disbursement engine powering a major banking application.</div></div>
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>Spectrum Books e-learning API</strong> — EPUB file upload (RabbitMQ async), digital book licensing, and subscription-gated access management.</div></div>
+        <div class="ach-item"><div class="ach-dot"></div><div class="ach-text"><strong>Analytics admin dashboard + support portal</strong> — user management, role management, and a full customer support ticketing system.</div></div>
+      </div>
+    </div>
+    
+    </div>
+    <div class="impact-row">
+      <span class="impact-chip green">✓ Banking financial modules shipped</span>
+      <span class="impact-chip cyan">📚 Full e-learning API built</span>
+      <span class="impact-chip blue">📊 Analytics dashboard delivered</span>
+    </div>
+  </div>
+</div>
+
+    </div><!-- end exp-timeline -->
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-label">Portfolio</div>
+    <h2>Featured <span class="gradient-text">Projects</span></h2>
+    <p class="section-desc">Shipped systems and products that I contributed to or that built on the side.</p>
+    <div class="projects-grid fade-in">
+      <article class="proj-card">
+        <div class="proj-head">
+          <span class="proj-icon" aria-hidden="true">🤖</span>
+          <div class="proj-meta">
+            <div class="proj-title">Seamless Bot</div>
+            <div class="proj-context">Applied AI Engineer</div>
+          </div>
+        </div>
+        <p class="proj-desc">Seamless Bot is a chatbot integrated into whatsapp and allows users to interact and perform HR related tasks. It helps employees with work-related tasks such as attendance, shift updates, leave requests, and HR information.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Lamda</span><span class="proj-tag">TypeScript</span><span class="proj-tag">Node.js</span><span class="proj-tag">AWS</span><span class="proj-tag">Whatsapp</span>
+        </div>
+        <div class="proj-footer">
+          <button type="button" class="proj-link primary js-wa-preview-open">Preview</button>
+        </div>
+      </article>
+      <article class="proj-card">
+        <div class="proj-head">
+          <span class="proj-icon" aria-hidden="true">👔</span>
+          <div class="proj-meta">
+            <div class="proj-title">Kinel</div>
+            <div class="proj-context">Senior Backend Engineer</div>
+          </div>
+        </div>
+        <p class="proj-desc">Kinel is a modern learning platform designed to help you build real-world tech skills, from coding and product design to other in-demand digital programs.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">NestJs</span><span class="proj-tag">Postgres</span><span class="proj-tag">Redis</span><span class="proj-tag">React</span>
+        </div>
+        <div class="proj-footer">
+          <a class="proj-link primary" href="https://www.kinelacademy.com" target="_blank" rel="noopener">Product suite ↗</a>
+        </div>
+      </article>
+      <article class="proj-card">
+        <div class="proj-head">
+          <span class="proj-icon" aria-hidden="true">🌾</span>
+          <div class="proj-meta">
+            <div class="proj-title">Agri ops automation</div>
+            <div class="proj-context">Proxify consultant · Crop Consults</div>
+          </div>
+        </div>
+        <p class="proj-desc">Systems optimization and workflow automation for planting monitoring and harvest coordination — less manual tracking, clearer operational data from field to reporting.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Automation</span><span class="proj-tag">Integrations</span><span class="proj-tag">Data pipelines</span>
+        </div>
+        <div class="proj-footer">
+          <a class="proj-link primary" href="https://cropconsult.com.au/" target="_blank" rel="noopener">Website ↗</a>
+        </div>
+      </article>
+      <article class="proj-card">
+        <div class="proj-head">
+          <span class="proj-icon" aria-hidden="true">🏢</span>
+          <div class="proj-meta">
+            <div class="proj-title">Clafiya for business</div>
+            <div class="proj-context">Technical Lead / CTO</div>
+          </div>
+        </div>
+        <p class="proj-desc">Clafiya for business is a digital, employer-focused health solution in Nigeria that provides affordable, on-demand, and personalized primary healthcare for employees. It offers flexible payment options, such as health savings accounts (HSAs), allowing companies to provide comprehensive wellness benefits covering in-person, home-based, and virtual care.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Laravel</span><span class="proj-tag">Reactjs</span><span class="proj-tag">Redis</span><span class="proj-tag">MySQL</span>
+        </div>
+        <div class="proj-footer">
+          <a class="proj-link primary" href="https://business.clafiya.com/" target="_blank" rel="noopener">Live site ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="stack" style="background:var(--bg-secondary);">
+  <div class="section-inner">
+    <div class="section-label">Technology</div>
+    <h2>My <span class="gradient-text">Tech Stack</span></h2>
+    <p class="section-desc">A battle-tested toolkit built across real production systems — not side projects.</p>
+    <div class="tech-grid fade-in">
+      <div class="tech-item"><span class="tech-icon">🐘</span><div class="tech-name">PHP / Laravel</div></div>
+      <div class="tech-item"><span class="tech-icon">🟨</span><div class="tech-name">TypeScript</div></div>
+      <div class="tech-item"><span class="tech-icon">🟩</span><div class="tech-name">Node.js/Express</div></div>
+      <div class="tech-item"><span class="tech-icon">🐦</span><div class="tech-name">NestJS</div></div>
+      <div class="tech-item"><span class="tech-icon">🌊</span><div class="tech-name">Kafka</div></div>
+      <div class="tech-item"><span class="tech-icon">🐇</span><div class="tech-name">RabbitMQ</div></div>
+      <div class="tech-item"><span class="tech-icon">🔴</span><div class="tech-name">Redis</div></div>
+      <div class="tech-item"><span class="tech-icon">🐘</span><div class="tech-name">PostgreSQL</div></div>
+      <div class="tech-item"><span class="tech-icon">🐬</span><div class="tech-name">MySQL</div></div>
+      <div class="tech-item"><span class="tech-icon">🍃</span><div class="tech-name">MongoDB</div></div>
+      <div class="tech-item"><span class="tech-icon">☁️</span><div class="tech-name">AWS</div></div>
+      <div class="tech-item"><span class="tech-icon">🐳</span><div class="tech-name">Docker</div></div>
+      <div class="tech-item"><span class="tech-icon">🤖</span><div class="tech-name">LangGraphJs/Langchain</div></div>
+      <div class="tech-item"><span class="tech-icon">🔌</span><div class="tech-name">MCP Server</div></div>
+      <div class="tech-item"><span class="tech-icon">💚</span><div class="tech-name">Vue.js</div></div>
+      <div class="tech-item"><span class="tech-icon">🧪</span><div class="tech-name">PHPUnit / Pest</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AI VISION -->
+<section id="ai-vision">
+  <div class="section-inner">
+    <div class="section-label">Technical Strategy</div>
+    <h2>How I Will <span class="gradient-text">Transform</span> Operations at Mutual Benefits</h2>
+    <p class="section-desc">True transformation requires more than just coding skills, it's built on solid architecture, scalable systems, and automated workflows. Here is how my comprehensive engineering background will optimize your business.</p>
+    <div class="ai-intro"><p>Throughout my career, I've done more than deploy new technology; I've rebuilt legacy systems for enterprise scale, automated complex operational pipelines, and structured high-performing teams from the ground up. At Mutual Benefits, I will lead with that engineering core — domain modeling, APIs, integrations, and cloud-native delivery — and pair it with applied AI where it earns its place: document understanding and triage, risk and anomaly signals, and staff- or customer-facing assistants, built with LangChain/LangGraph-style patterns on top of governed data and clear human review paths. The result is a more resilient system, fewer manual handoffs, faster claims processing, and a foundation that scales without betting the business on a black box.</p></div>
+    <div class="ai-cards fade-in">
+      <div class="ai-card"><span class="ai-card-icon">📋</span><h4>Claims &amp; policy core systems</h4><p>Design clear domain models and applications; so claims, policies, and payouts move through defined states, fewer spreadsheets, fewer “who owns this?” handoffs, and an auditable trail from intake to resolution. On that backbone, LLM-assisted intake can classify submissions, extract fields from documents, and route work, always with explicit queues and human checkpoints.</p><span class="ai-benefit">↓ First-touch time</span></div>
+      <div class="ai-card"><span class="ai-card-icon">🔌</span><h4>Integrations &amp; event-driven workflows</h4><p>Connect SASS applications, partners, payments, and internal tools with queues and streams, so updates propagate reliably; not brittle nightly batches and teams see consistent data everywhere. Those same events can safely feed scoring, analytics, and real-time reporting.</p><span class="ai-benefit">↑ Data consistency</span></div>
+      <div class="ai-card"><span class="ai-card-icon">📊</span><h4>Data modeling &amp; operational insight</h4><p>, and reporting pipelines that underwriting and operations can trust — dashboards and rules backed by clean data instead of tribal knowledge in inboxes. The same warehouse feeds anomaly detection on claims and payment patterns so suspicious behaviour surfaces before payout, with explainable signals alongside any model output.</p><span class="ai-benefit">↑ Risk visibility</span></div>
+      <div class="ai-card"><span class="ai-card-icon">⚙️</span><h4>Workflow automation (systems + AI)</h4><p>Replace repetitive manual steps with orchestrated jobs, validations, and notifications. Where documents or compliance checks are the bottleneck, AI steps in for extraction, summarisation, and checklist completion, wired through the same queues and audit logs as the rest of the platform.</p><span class="ai-benefit">↓ Manual toil</span></div>
+      <div class="ai-card"><span class="ai-card-icon">🖥️</span><h4>Internal products &amp; service tooling</h4><p>Admin consoles and structured workflows so staff handle renewals, document checks, and customer requests faster, with clear escalation paths instead of ad hoc messaging threads. Layer in assistants for draft replies, policy Q&amp;A over approved sources, and next-best-action prompts so humans stay in control but move faster.</p><span class="ai-benefit">↑ Team &amp; CX throughput</span></div>
+      <div class="ai-card"><span class="ai-card-icon">☁️</span><h4>Cloud, reliability &amp; engineering discipline</h4><p>AWS, Docker, Redis, CI/CD, Unit/Feature Tests, and observability practices so releases are safe, incidents are traceable, and the platform scales as Mutual Benefits applications scale.</p><span class="ai-benefit">↓ Risk at scale</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM BLUEPRINT -->
+<section id="team-blueprint" style="background:var(--bg-secondary);">
+  <div class="section-inner">
+    <div class="section-label">Team Building</div>
+    <h2>My <span class="gradient-text">180-Day Blueprint</span> for the Engineering Team</h2>
+    <div class="blueprint-phases fade-in">
+      <div class="phase-card p1">
+        <div class="phase-number">Phase 1 · Days 1–30</div>
+        <div class="phase-title">Foundation &amp; Discovery</div>
+        <ul class="phase-items">
+          <li>Audit all existing systems, data, and manual processes</li>
+          <li>Map the full business workflow — claims, underwriting, policy, CX</li>
+          <li>Identify highest-leverage automation targets</li>
+          <li>Define technology stack and cloud strategy (AWS)</li>
+          <li>Set up version control, CI/CD, and dev environments</li>
+          <li>Establish security baselines and compliance requirements</li>
+        </ul>
+      </div>
+      <div class="phase-card p2">
+        <div class="phase-number">Phase 2 · Days 31–60</div>
+        <div class="phase-title">Core Systems &amp; Team</div>
+        <ul class="phase-items">
+          <li>Begin hiring plan, and interview for roles in order of priority</li>
+          <li>Hire first 5-7 team members (backend/frontend/fullstack/QA/UI-UX, then Product Manager and Business Analysts)</li>
+          <li>Map the full business workflow — claims, underwriting, policy, CX</li>
+          <li>Identify highest-leverage automation targets</li>
+          <li>Define technology stack and cloud strategy (AWS)</li>
+          <li>Set up version control, CI/CD, and dev environments</li>
+          <li>Establish security baselines and compliance requirements</li>
+          <li>Establish engineering rituals: sprints, code reviews, docs</li>
+          <li>Define SLAs, uptime targets, and observability stack</li>
+        </ul>
+      </div>
+      <div class="phase-card p3">
+        <div class="phase-number">Phase 3 · Days 61–120</div>
+        <div class="phase-title">Documentation &amp; Development Roadmap</div>
+        <ul class="phase-items">
+          <li>Product Requirement Dcoumentation and Development Roadmap</li>
+          <li>Present first quarterly engineering roadmap to leadership</li>
+          <li>Embed compliance review into the development lifecycle</li>
+          <li>Product Design and Approval</li>
+          <li>Map out the use of AI in the product</li>
+          <li>Product Development and Testing</li>
+        </ul>
+      </div>
+      <div class="phase-card p3">
+        <div class="phase-number">Phase 4 · Days 121–180</div>
+        <div class="phase-title">First Product Launch</div>
+        <ul class="phase-items">
+          <li>Testing and QA for the product</li>
+          <li>Ship first internal product or service tool</li>
+          <li>Establish knowledge base and developer documentation</li>
+          <li>Product Launch</li>
+        </ul>
+      </div>
+    </div>
+    <div class="section-label" style="margin-top:2rem;">Engineering Principles</div>
+    <div class="principles-grid fade-in">
+      <div class="principle-card"><span class="p-icon">🤖</span><div class="p-title">AI-First by Default</div><div class="p-desc">Every manual process is a candidate for automation. We build with AI tooling from day one.</div></div>
+      <div class="principle-card"><span class="p-icon">🔐</span><div class="p-title">Compliance-Embedded</div><div class="p-desc">Security and regulatory compliance aren't afterthoughts, they're baked into every architectural decision.</div></div>
+      <div class="principle-card"><span class="p-icon">📦</span><div class="p-title">Clean Code Culture</div><div class="p-desc">Code reviews, separation of concerns, design patterns, and comprehensive testing are non-negotiable.</div></div>
+      <div class="principle-card"><span class="p-icon">📈</span><div class="p-title">Observable Systems</div><div class="p-desc">Every service is monitored. Every incident is logged. We measure what matters and respond fast.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label">Let's Talk</div>
+    <h2>Ready to <span class="gradient-text">Build Together</span>?</h2>
+    <div class="contact-card fade-in">
+      <div class="contact-text">
+        <h3>Let's build the future together.</h3>
+        <p>If you have more questions, or would like to discuss my skills and experience further, please feel free to reach out to me.</p>
+        <a href="mailto:ajosavboy@gmail.com" class="btn-primary" style="margin-top:1.5rem;display:inline-flex;">Send me a message →</a>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:ajosavboy@gmail.com" class="contact-link"><div class="cl-icon">📧</div><div><div style="font-weight:600;color:var(--text-primary);font-size:0.85rem;">Email</div><div style="font-size:0.8rem;color:var(--text-muted);">ajosavboy@gmail.com</div></div></a>
+        <a href="https://www.linkedin.com/in/joshua-adebayo-bb35271" target="_blank" class="contact-link"><div class="cl-icon">💼</div><div><div style="font-weight:600;color:var(--text-primary);font-size:0.85rem;">LinkedIn</div><div style="font-size:0.8rem;color:var(--text-muted);">linkedin.com/in/joshua-adebayo-bb35271</div></div></a>
+        <a href="tel:+2348137512747" class="contact-link"><div class="cl-icon">📱</div><div><div style="font-weight:600;color:var(--text-primary);font-size:0.85rem;">Phone</div><div style="font-size:0.8rem;color:var(--text-muted);">+234 813 751 2747</div></div></a>
+        <a href="#" class="contact-link" style="opacity:0.5;pointer-events:none;"><div class="cl-icon">📍</div><div><div style="font-weight:600;color:var(--text-primary);font-size:0.85rem;">Location</div><div style="font-size:0.8rem;color:var(--text-muted);">Lagos, Nigeria · Open to Relocation</div></div></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><p>© 2026 Joshua Adebayo</p></footer>
+
+<!-- ══════════════════ LIGHTBOX ══════════════════ -->
+<div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true">
+  <div class="lb-container" id="lbContainer">
+    <div class="lb-topbar">
+      <span class="lb-company" id="lbCompany"></span>
+      <span class="lb-counter" id="lbCounter"></span>
+      <button class="lb-close-btn" id="lbClose" aria-label="Close">✕</button>
+    </div>
+    <div class="lb-image-area" id="lbImageArea">
+      <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+      <button class="lb-nav lb-next" id="lbNext" aria-label="Next">&#8250;</button>
+    </div>
+    <div class="lb-dots" id="lbDots"></div>
+    <div class="lb-footer">
+      <div>
+        <div class="lb-caption-text" id="lbCaption"></div>
+        <div class="lb-caption-sub" id="lbSub"></div>
+      </div>
+      <a class="lb-visit-link" id="lbVisit" target="_blank" rel="noopener">Visit Live Project ↗</a>
+    </div>
+  </div>
+</div>
+
+<!-- WhatsApp screens preview (pan + zoom) -->
+<div class="wa-overlay" id="waPreviewOverlay" role="dialog" aria-modal="true" aria-labelledby="waPreviewTitle" hidden>
+  <div class="wa-modal" id="waPreviewModal">
+    <div class="wa-topbar">
+      <span class="wa-title" id="waPreviewTitle">Seamless Bot · WhatsApp UI</span>
+      <button type="button" class="lb-close-btn" id="waPreviewClose" aria-label="Close preview">✕</button>
+    </div>
+    <p class="wa-hint">Full screen · scroll or pinch to zoom · drag to pan · ultra-wide flows scroll sideways · double-click or reset for default zoom</p>
+    <div class="wa-stage-wrap">
+      <button type="button" class="lb-nav lb-prev wa-nav wa-prev" id="waImgPrev" aria-label="Previous screen">&#8249;</button>
+      <div class="wa-viewport" id="waViewport" aria-label="Draggable preview">
+        <div class="wa-pan-inner" id="waPanInner">
+          <img id="waPreviewImg" src="" alt="WhatsApp product screen" draggable="false"/>
+        </div>
+      </div>
+      <button type="button" class="lb-nav lb-next wa-nav wa-next" id="waImgNext" aria-label="Next screen">&#8250;</button>
+    </div>
+    <div class="wa-dots" id="waDots"></div>
+    <div class="wa-toolbar">
+      <button type="button" class="wa-reset" id="waResetView">Reset view</button>
+      <span class="wa-counter" id="waImgCounter"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── EXPERIENCE TOGGLE ───
+function toggleExp(card) {
+  if (card.classList.contains('open')) { card.classList.remove('open'); return; }
+  document.querySelectorAll('.exp-card.open').forEach(c => c.classList.remove('open'));
+  card.classList.add('open');
+  setTimeout(() => card.scrollIntoView({ behavior:'smooth', block:'nearest' }), 60);
+}
+
+// ─── LIGHTBOX STATE ───
+let lbItems = [];   // all product-card elements in current group
+let lbIndex  = 0;
+
+const overlay   = document.getElementById('lightbox');
+const imgArea   = document.getElementById('lbImageArea');
+const prevBtn   = document.getElementById('lbPrev');
+const nextBtn   = document.getElementById('lbNext');
+const dotsWrap  = document.getElementById('lbDots');
+const companyEl = document.getElementById('lbCompany');
+const counterEl = document.getElementById('lbCounter');
+const captionEl = document.getElementById('lbCaption');
+const subEl     = document.getElementById('lbSub');
+const visitEl   = document.getElementById('lbVisit');
+
+function openLightbox(card) {
+  const group = card.dataset.group;
+  lbItems = Array.from(document.querySelectorAll(`.product-card[data-group="${group}"]`));
+  lbIndex = lbItems.indexOf(card);
+
+  // Company labels
+  const companyNames = {
+    clafiya:'Clafiya', proxify:'Proxify', seamlesshr:'SeamlessHR', causes:'Causes Strategy Partners',
+    renmoney:'RenMoney', aftj:'AFTJ Digital', cloudware:'Cloudware Technologies'
+  };
+  companyEl.textContent = companyNames[group] || group;
+
+  buildDots();
+  renderSlide();
+
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  overlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function buildDots() {
+  dotsWrap.innerHTML = '';
+  if (lbItems.length <= 1) { dotsWrap.style.display='none'; return; }
+  dotsWrap.style.display='flex';
+  lbItems.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'lb-dot' + (i === lbIndex ? ' active' : '');
+    d.onclick = () => { lbIndex = i; renderSlide(); };
+    dotsWrap.appendChild(d);
+  });
+}
+
+function renderSlide() {
+  const card   = lbItems[lbIndex];
+  const url    = card.dataset.url || '';
+  const caption= card.dataset.caption || '';
+  const screen = card.querySelector('.product-screen');
+  const img    = screen ? screen.querySelector('img') : null;
+  const icon   = screen ? screen.querySelector('.ph-icon') : null;
+  const label  = screen ? screen.querySelector('.ph-label') : null;
+
+  // counter
+  counterEl.textContent = lbItems.length > 1 ? `${lbIndex+1} / ${lbItems.length}` : '';
+
+  // nav
+  prevBtn.classList.toggle('disabled', lbIndex === 0);
+  nextBtn.classList.toggle('disabled', lbIndex === lbItems.length - 1);
+
+  // dots
+  dotsWrap.querySelectorAll('.lb-dot').forEach((d,i) => d.classList.toggle('active', i===lbIndex));
+
+  // content area — remove old content except nav buttons
+  const oldContent = imgArea.querySelector('.lb-img-real, .lb-placeholder');
+  if (oldContent) oldContent.remove();
+
+  if (img && img.src && !img.src.includes('undefined')) {
+    // real image
+    const el = document.createElement('img');
+    el.className = 'lb-img-real';
+    el.src = img.src;
+    el.alt = caption;
+    el.style.cssText = 'width:100%;max-height:520px;object-fit:contain;display:block;';
+    imgArea.insertBefore(el, prevBtn);
+  } else {
+    // placeholder
+    const ph = document.createElement('div');
+    ph.className = 'lb-placeholder';
+    const iconText  = icon  ? icon.textContent  : '📦';
+    const labelText = label ? label.innerHTML   : caption;
+    ph.innerHTML = `
+      <div class="lb-ph-icon">${iconText}</div>
+      <div class="lb-ph-title">${caption}</div>
+      <div class="lb-ph-sub">${labelText}</div>
+      <span class="lb-ph-coming">📸 Screenshot coming soon</span>
+    `;
+    imgArea.insertBefore(ph, prevBtn);
+  }
+
+  // footer
+  captionEl.textContent = caption;
+  subEl.textContent     = url ? url.replace(/^https?:\/\//, '') : '';
+
+  if (url) {
+    visitEl.href = url;
+    visitEl.classList.remove('hidden');
+  } else {
+    visitEl.classList.add('hidden');
+  }
+}
+
+// ─── NAV ───
+prevBtn.onclick = () => { if(lbIndex>0){ lbIndex--; renderSlide(); } };
+nextBtn.onclick = () => { if(lbIndex<lbItems.length-1){ lbIndex++; renderSlide(); } };
+document.getElementById('lbClose').onclick = closeLightbox;
+overlay.addEventListener('click', e => { if(e.target===overlay) closeLightbox(); });
+
+document.addEventListener('keydown', e => {
+  if (!overlay.classList.contains('active')) return;
+  if (e.key==='Escape') closeLightbox();
+  if (e.key==='ArrowLeft'  && lbIndex>0)                  { lbIndex--; renderSlide(); }
+  if (e.key==='ArrowRight' && lbIndex<lbItems.length-1)   { lbIndex++; renderSlide(); }
+});
+
+// ─── SWIPE SUPPORT ───
+let touchStartX = 0;
+document.getElementById('lbContainer').addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+document.getElementById('lbContainer').addEventListener('touchend',   e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 50) {
+    if (dx < 0 && lbIndex < lbItems.length-1) { lbIndex++; renderSlide(); }
+    if (dx > 0 && lbIndex > 0)                { lbIndex--; renderSlide(); }
+  }
+}, {passive:true});
+
+// ─── WHATSAPP PREVIEW (pan + zoom) ───
+(function () {
+  /** Paths are relative to this HTML file — edit to match your files (and folder spelling: Whatsapp vs WhatsApp). */
+  const WA_PREVIEW_IMAGES = [
+    'assets/work-experience/Whatsapp/leave.png',
+    'assets/work-experience/Whatsapp/attendance-history.png',
+    'assets/work-experience/Whatsapp/clockin.png',
+  ];
+
+  const waOverlay = document.getElementById('waPreviewOverlay');
+  const waModal = document.getElementById('waPreviewModal');
+  const waViewport = document.getElementById('waViewport');
+  const waPanInner = document.getElementById('waPanInner');
+  const waImg = document.getElementById('waPreviewImg');
+  const waDots = document.getElementById('waDots');
+  const waCounter = document.getElementById('waImgCounter');
+  const waPrev = document.getElementById('waImgPrev');
+  const waNext = document.getElementById('waImgNext');
+  const waResetBtn = document.getElementById('waResetView');
+  const waClose = document.getElementById('waPreviewClose');
+  const btnOpen = document.querySelector('.js-wa-preview-open');
+
+  /** Default zoom — portrait/tall frames */
+  const WA_DEFAULT_ZOOM = 3.1;
+  /** Ultra-wide stitched screenshots (width ≫ height), e.g. 12920×3202 */
+  const WA_PANORAMA_DEFAULT_ZOOM = 3.75;
+  const WA_PANORAMA_ASPECT = 2.25;
+  const MIN_SCALE = 0.65;
+  const MAX_SCALE = 9;
+
+  let waIndex = 0;
+  let waScale = WA_DEFAULT_ZOOM;
+  let waTx = 0;
+  let waTy = 0;
+  let dragging = false;
+  let dragStartX = 0;
+  let dragStartY = 0;
+  let startTx = 0;
+  let startTy = 0;
+  let pinchStartDist = 0;
+  let pinchStartScale = 1;
+
+  function applyWaTransform() {
+    waPanInner.style.transform = `translate(${waTx}px, ${waTy}px) scale(${waScale})`;
+  }
+
+  function waIsPanorama(iw, ih) {
+    return iw > 0 && ih > 0 && iw / ih >= WA_PANORAMA_ASPECT;
+  }
+
+  function applyWaLayoutClass() {
+    const iw = waImg.naturalWidth;
+    const ih = waImg.naturalHeight;
+    waImg.classList.remove('wa-img--panorama', 'wa-img--portrait');
+    if (!iw || !ih) return;
+    waImg.classList.add(waIsPanorama(iw, ih) ? 'wa-img--panorama' : 'wa-img--portrait');
+  }
+
+  function comfortZoomForCurrentImage() {
+    const iw = waImg.naturalWidth;
+    const ih = waImg.naturalHeight;
+    if (!iw || !ih) return WA_DEFAULT_ZOOM;
+    if (waIsPanorama(iw, ih)) {
+      return Math.min(MAX_SCALE, WA_PANORAMA_DEFAULT_ZOOM);
+    }
+    const portrait = ih / iw >= 1.25;
+    return portrait ? Math.min(MAX_SCALE, WA_DEFAULT_ZOOM * 1.12) : WA_DEFAULT_ZOOM;
+  }
+
+  function resetWaView() {
+    waScale = comfortZoomForCurrentImage();
+    waTx = 0;
+    waTy = 0;
+    applyWaTransform();
+  }
+
+  function buildWaDots() {
+    waDots.innerHTML = '';
+    WA_PREVIEW_IMAGES.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.type = 'button';
+      d.className = 'wa-dot' + (i === waIndex ? ' active' : '');
+      d.setAttribute('aria-label', `Screen ${i + 1}`);
+      d.addEventListener('click', () => {
+        waIndex = i;
+        showWaSlide();
+      });
+      waDots.appendChild(d);
+    });
+  }
+
+  function updateWaDots() {
+    waDots.querySelectorAll('.wa-dot').forEach((d, i) => d.classList.toggle('active', i === waIndex));
+  }
+
+  function showWaSlide() {
+    waImg.src = WA_PREVIEW_IMAGES[waIndex] || '';
+    waCounter.textContent = `${waIndex + 1} / ${WA_PREVIEW_IMAGES.length}`;
+    waPrev.classList.toggle('disabled', waIndex === 0);
+    waNext.classList.toggle('disabled', waIndex === WA_PREVIEW_IMAGES.length - 1);
+    updateWaDots();
+    waImg.classList.remove('wa-img--panorama', 'wa-img--portrait');
+    resetWaView();
+    const onImgReady = () => {
+      applyWaLayoutClass();
+      waScale = comfortZoomForCurrentImage();
+      waTx = 0;
+      waTy = 0;
+      applyWaTransform();
+    };
+    if (waImg.complete && waImg.naturalWidth) onImgReady();
+    else waImg.addEventListener('load', onImgReady, { once: true });
+  }
+
+  function openWaPreview() {
+    waIndex = 0;
+    waScale = WA_DEFAULT_ZOOM;
+    waOverlay.removeAttribute('hidden');
+    requestAnimationFrame(() => waOverlay.classList.add('active'));
+    document.body.style.overflow = 'hidden';
+    buildWaDots();
+    showWaSlide();
+  }
+
+  function closeWaPreview() {
+    waOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      if (!waOverlay.classList.contains('active')) waOverlay.setAttribute('hidden', '');
+    }, 320);
+  }
+
+  function touchDistance(touches) {
+    const a = touches[0];
+    const b = touches[1];
+    const dx = a.clientX - b.clientX;
+    const dy = a.clientY - b.clientY;
+    return Math.hypot(dx, dy);
+  }
+
+  if (btnOpen) btnOpen.addEventListener('click', openWaPreview);
+  waClose.addEventListener('click', closeWaPreview);
+  waOverlay.addEventListener('click', e => { if (e.target === waOverlay) closeWaPreview(); });
+  waResetBtn.addEventListener('click', resetWaView);
+
+  waPrev.addEventListener('click', () => {
+    if (waIndex > 0) {
+      waIndex--;
+      showWaSlide();
+    }
+  });
+  waNext.addEventListener('click', () => {
+    if (waIndex < WA_PREVIEW_IMAGES.length - 1) {
+      waIndex++;
+      showWaSlide();
+    }
+  });
+
+  waViewport.addEventListener('wheel', e => {
+    e.preventDefault();
+    const delta = e.deltaY > 0 ? -0.12 : 0.12;
+    waScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, waScale + delta));
+    applyWaTransform();
+  }, { passive: false });
+
+  waViewport.addEventListener('mousedown', e => {
+    if (e.button !== 0) return;
+    dragging = true;
+    waViewport.classList.add('is-panning');
+    dragStartX = e.clientX;
+    dragStartY = e.clientY;
+    startTx = waTx;
+    startTy = waTy;
+  });
+
+  window.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    waTx = startTx + (e.clientX - dragStartX);
+    waTy = startTy + (e.clientY - dragStartY);
+    applyWaTransform();
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    waViewport.classList.remove('is-panning');
+  });
+
+  waViewport.addEventListener('touchstart', e => {
+    if (e.touches.length === 2) {
+      pinchStartDist = touchDistance(e.touches);
+      pinchStartScale = waScale;
+    } else if (e.touches.length === 1) {
+      pinchStartDist = 0;
+      dragging = true;
+      waViewport.classList.add('is-panning');
+      dragStartX = e.touches[0].clientX;
+      dragStartY = e.touches[0].clientY;
+      startTx = waTx;
+      startTy = waTy;
+    }
+  }, { passive: true });
+
+  waViewport.addEventListener('touchmove', e => {
+    if (e.touches.length === 2 && pinchStartDist > 0) {
+      e.preventDefault();
+      const d = touchDistance(e.touches);
+      waScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, pinchStartScale * (d / pinchStartDist)));
+      applyWaTransform();
+    } else if (e.touches.length === 1 && dragging) {
+      e.preventDefault();
+      waTx = startTx + (e.touches[0].clientX - dragStartX);
+      waTy = startTy + (e.touches[0].clientY - dragStartY);
+      applyWaTransform();
+    }
+  }, { passive: false });
+
+  waViewport.addEventListener('touchend', e => {
+    if (e.touches.length < 2) pinchStartDist = 0;
+    if (e.touches.length === 0) {
+      dragging = false;
+      waViewport.classList.remove('is-panning');
+    } else if (e.touches.length === 1) {
+      dragging = true;
+      dragStartX = e.touches[0].clientX;
+      dragStartY = e.touches[0].clientY;
+      startTx = waTx;
+      startTy = waTy;
+    }
+  });
+
+  waImg.addEventListener('dblclick', resetWaView);
+
+  document.addEventListener('keydown', e => {
+    if (!waOverlay.classList.contains('active')) return;
+    if (e.key === 'Escape') closeWaPreview();
+    if (e.key === 'ArrowLeft' && waIndex > 0) {
+      waIndex--;
+      showWaSlide();
+    }
+    if (e.key === 'ArrowRight' && waIndex < WA_PREVIEW_IMAGES.length - 1) {
+      waIndex++;
+      showWaSlide();
+    }
+  });
+})();
+
+// ─── FADE IN ───
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+document.querySelectorAll('.tech-grid .tech-item, .ai-cards .ai-card, .blueprint-phases .phase-card').forEach((el,i) => {
+  el.style.transitionDelay = i*0.05+'s';
+});
+</script>
+</body>
+</html>
