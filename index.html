@@ -511,10 +511,10 @@
 
   /* TECH STACK */
   .tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:1rem;}
-  .tech-item{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center;transition:border-color 0.3s,background 0.3s,transform 0.2s;}
+  .tech-item{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center;transition:border-color 0.3s,background 0.3s,transform 0.2s;min-width:0;}
   .tech-item:hover{border-color:rgba(124,58,237,0.4);background:var(--bg-card-hover);transform:translateY(-3px);}
   .tech-icon{font-size:1.75rem;margin-bottom:0.5rem;display:block;}
-  .tech-name{font-size:0.78rem;font-weight:600;color:var(--text-secondary);}
+  .tech-name{font-size:0.78rem;font-weight:600;color:var(--text-secondary);line-height:1.35;overflow-wrap:anywhere;word-break:break-word;}
 
   /* AI VISION */
   #ai-vision{background:var(--bg-secondary);}
