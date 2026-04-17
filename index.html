@@ -549,6 +549,23 @@
   .p-icon{font-size:1.75rem;margin-bottom:0.75rem;display:block;}
   .p-title{font-size:0.85rem;font-weight:700;margin-bottom:0.35rem;}
   .p-desc{font-size:0.78rem;color:var(--text-muted);line-height:1.5;}
+  .blueprint-post{border-top:1px solid var(--border);margin-top:2.5rem;padding-top:2.5rem;}
+  .blueprint-post-kicker{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#a78bfa;margin-bottom:0.5rem;}
+  .blueprint-post-title{font-size:clamp(1.2rem,2.8vw,1.45rem);font-weight:800;margin-bottom:1rem;line-height:1.25;}
+  .blueprint-post-lead{font-size:1rem;color:var(--text-secondary);line-height:1.75;max-width:720px;margin-bottom:1.5rem;}
+  .blueprint-post-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;}
+  .post-horizon-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;position:relative;overflow:hidden;transition:border-color 0.3s,transform 0.2s;}
+  .post-horizon-card:hover{border-color:rgba(124,58,237,0.35);transform:translateY(-3px);}
+  .post-horizon-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+  .post-horizon-card.ph-cx::before{background:linear-gradient(90deg,#7c3aed,#a78bfa);}
+  .post-horizon-card.ph-api::before{background:linear-gradient(90deg,#2563eb,#22d3ee);}
+  .post-horizon-card.ph-wa::before{background:linear-gradient(90deg,#128c7e,#25d366);}
+  .post-horizon-card.ph-agent::before{background:linear-gradient(90deg,#d97706,#fbbf24);}
+  .post-horizon-card h4{font-size:0.95rem;font-weight:700;margin-bottom:0.65rem;}
+  .post-horizon-card > p{font-size:0.82rem;color:var(--text-muted);line-height:1.65;margin-bottom:0.85rem;}
+  .post-horizon-card ul{list-style:none;display:flex;flex-direction:column;gap:0.45rem;margin:0;padding:0;}
+  .post-horizon-card li{font-size:0.8rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:0.45rem;line-height:1.45;}
+  .post-horizon-card li::before{content:'→';color:var(--text-muted);flex-shrink:0;margin-top:0.05rem;}
 
   /* CONTACT */
   #contact{background:var(--bg-secondary);}
@@ -575,6 +592,7 @@
     .about-grid{grid-template-columns:1fr;}
     .ai-cards{grid-template-columns:1fr 1fr;}
     .blueprint-phases{grid-template-columns:1fr;}
+    .blueprint-post-grid{grid-template-columns:1fr;}
     .principles-grid{grid-template-columns:repeat(2,1fr);}
     .contact-card{grid-template-columns:1fr;gap:2rem;}
     .fb-left,.fb-right,.fb-bottom{display:none;}
@@ -703,6 +721,152 @@
     </div>
   </div>
 </section>
+
+<!-- AI VISION -->
+<section id="ai-vision">
+  <div class="section-inner">
+    <div class="section-label">Technical Strategy</div>
+    <h2>How I Will <span class="gradient-text">Transform</span> Operations at Mutual Benefits</h2>
+    <p class="section-desc">True transformation requires more than just coding skills, it's built on solid architecture, scalable systems, and automated workflows. Here is how my comprehensive engineering background will optimize your business.</p>
+    <div class="ai-intro"><p>Throughout my career, I've done more than deploy new technology; I've rebuilt legacy systems for enterprise scale, automated complex operational pipelines, and structured high-performing teams from the ground up. At Mutual Benefits, I will lead with that engineering core domain modeling, APIs, integrations, and cloud-native delivery and pair it with applied AI where it earns its place: document understanding and triage, risk and anomaly signals, and staff or customer-facing assistants on top of governed data and clear human review paths. The result is a more resilient system, fewer manual handoffs, faster claims processing, and a foundation that scales without betting the business on a black box.</p></div>
+    <div class="ai-cards fade-in">
+      <div class="ai-card"><span class="ai-card-icon">📋</span><h4>Claims &amp; policy core systems</h4><p>Design clear domain models and applications; so claims, policies, and payouts move through defined states, fewer spreadsheets, fewer “who owns this?” handoffs, and an auditable trail from intake to resolution. On that backbone, LLM-assisted intake can classify submissions, extract fields from documents, and route work, always with explicit queues and human checkpoints.</p><span class="ai-benefit">↓ First-touch time</span></div>
+      <div class="ai-card"><span class="ai-card-icon">🔌</span><h4>Integrations &amp; event-driven workflows</h4><p>Connect SASS applications, partners, payments, and internal tools with queues and streams, so updates propagate reliably; not brittle nightly batches and teams see consistent data everywhere. Those same events can safely feed scoring, analytics, and real-time reporting.</p><span class="ai-benefit">↑ Data consistency</span></div>
+      <div class="ai-card"><span class="ai-card-icon">📊</span><h4>Data modeling &amp; operational insight</h4><p>, and reporting pipelines that underwriting and operations can trust — dashboards and rules backed by clean data instead of tribal knowledge in inboxes. The same warehouse feeds anomaly detection on claims and payment patterns so suspicious behaviour surfaces before payout, with explainable signals alongside any model output.</p><span class="ai-benefit">↑ Risk visibility</span></div>
+      <div class="ai-card"><span class="ai-card-icon">⚙️</span><h4>Workflow automation (systems + AI)</h4><p>Replace repetitive manual steps with orchestrated jobs, validations, and notifications. Where documents or compliance checks are the bottleneck, AI steps in for extraction, summarisation, and checklist completion, wired through the same queues and audit logs as the rest of the platform.</p><span class="ai-benefit">↓ Manual toil</span></div>
+      <div class="ai-card"><span class="ai-card-icon">🖥️</span><h4>Internal products &amp; service tooling</h4><p>Admin consoles and structured workflows so staff handle renewals, document checks, and customer requests faster, with clear escalation paths instead of ad hoc messaging threads. Layer in assistants for draft replies, policy Q&amp;A over approved sources, and next-best-action prompts so humans stay in control but move faster.</p><span class="ai-benefit">↑ Team &amp; CX throughput</span></div>
+      <div class="ai-card"><span class="ai-card-icon">☁️</span><h4>Cloud, reliability &amp; engineering discipline</h4><p>AWS, Docker, Redis, CI/CD, Unit/Feature Tests, and observability practices so releases are safe, incidents are traceable, and the platform scales as Mutual Benefits applications scale.</p><span class="ai-benefit">↓ Risk at scale</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM BLUEPRINT -->
+<section id="team-blueprint" style="background:var(--bg-secondary);">
+  <div class="section-inner">
+    <div class="section-label">Team Building</div>
+    <h2>My <span class="gradient-text">180-Day Blueprint</span> for the Engineering Team</h2>
+    <div class="blueprint-phases fade-in">
+      
+      <div class="phase-card p1">
+        <div class="phase-number">Phase 1 · Days 1–30</div>
+        <div class="phase-title">System Discovery &amp; Blueprinting</div>
+        <ul class="phase-items">
+          <li>Map the current state: Deeply analyze the acquired insurance software to understand exactly how claims, underwriting, and customer data flow through the business today.</li>
+          <li>Document all connections: Identify every way our systems talk to outside partners, banks, and internal tools. Assign clear owners so nothing relies on hidden "tribal knowledge."</li>
+          <li>Trace the money: Understand every financial path—from collecting premiums to issuing refunds—ensuring we know exactly how payments tie back to operations.</li>
+          <li>Create an integration playbook: Set standard rules for how we connect to the current software so the team builds safely and consistently, avoiding temporary band-aids.</li>
+          <li>Define boundaries: Clearly separate what the vendor software handles from what we will build internally, designing our pieces to scale as the business grows.</li>
+          <li>Establish safe testing: Set up secure testing environments so we can release updates without accidentally breaking the live system.</li>
+          <li>Set security baselines: Establish strict compliance, audit, and security rules for all insurance data across both vendor and internal systems.</li>
+        </ul>
+      </div>
+
+      <div class="phase-card p2">
+        <div class="phase-number">Phase 2 · Days 31–60</div>
+        <div class="phase-title">Building the Team &amp; Foundations</div>
+        <ul class="phase-items">
+          <li>Kick off hiring: Finalize the hiring plan and begin interviewing for high-priority roles.</li>
+          <li>Onboard the core team: Hire the first 5-7 foundational members across engineering, product management, and business analysis.</li>
+          <li>Ship initial connections: Launch our first technical integrations safely, complete with tracking dashboards to prove everything is stable before real customer traffic hits.</li>
+          <li>Test real-world operations: Test our internal tools against daily operational tasks—like error handling and payment matching—ensuring complete accuracy.</li>
+          <li>Stress-test finances: Work alongside the finance team to rigorously test payment flows, ensuring refunds, reports, and audit trails are completely secure and error-free.</li>
+          <li>Establish team habits: Set up healthy engineering routines, including regular planning cycles, code reviews, and clear documentation.</li>
+          <li>Set performance goals: Define clear uptime targets and set up the monitoring tools needed to track system health 24/7.</li>
+          <li>Lock in the roadmap: Finalize product requirements and the development schedule for the months ahead.</li>
+        </ul>
+      </div>
+
+      <div class="phase-card p3">
+        <div class="phase-number">Phase 3 · Days 61–120</div>
+        <div class="phase-title">Vendor Sunset &amp; Internal Transition</div>
+        <ul class="phase-items">
+          <li>Plan the vendor exit: Map out contract deadlines, data export rights, and agree with leadership on a target date to stop paying recurring vendor fees.</li>
+          <li>Ensure feature parity: Check every feature the current software provides against our new system to guarantee we don't miss anything crucial before we switch.</li>
+          <li>Execute a seamless swap: Use a step-by-step replacement strategy, quietly swapping out vendor parts for our new internal ones behind the scenes without disrupting the user experience.</li>
+          <li>Safeguard the data: Run both the old and new systems side-by-side temporarily to guarantee all historical data transfers perfectly with zero financial mismatches.</li>
+          <li>Roll out by risk level: Launch internal features starting with low-risk areas (like reporting) before moving to critical financial flows, prioritizing security reviews at every step.</li>
+          <li>Turn off selectively: Only retire pieces of the old vendor software when our internal version is fully proven, monitored, and has a clear backup plan in place.</li>
+        </ul>
+      </div>
+
+      <div class="phase-card p4">
+        <div class="phase-number">Phase 4 · Days 121–180</div>
+        <div class="phase-title">Final Cutover &amp; Post-Launch Support</div>
+        <ul class="phase-items">
+          <li>Run practice drills: Conduct full rehearsals of the final switchover using real data and payment paths, ensuring the actual launch day is smooth and uneventful.</li>
+          <li>Execute the final transition: Carefully transition all remaining operations to our new internal systems until the expensive vendor software is completely removed.</li>
+          <li>Decommission the vendor: Officially shut down the old software, secure final data backups, and coordinate with finance to close out billing.</li>
+          <li>Enter "Hypercare": Provide dedicated, high-alert monitoring and rapid bug fixing by the engineering team until the new system is completely stable and error-free.</li>
+          <li>Finalize training: Complete all team training and documentation so our internal platform can be easily maintained by our staff without relying on outside help.</li>
+          <li>Measure success: Verify system reliability, operational speed, and the actual money saved by dropping the vendor, using this data to plan our next big goals.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="blueprint-post fade-in">
+      <div class="blueprint-post-kicker">Engineering Vision</div>
+      <h3 class="blueprint-post-title">Growth Channels: <span class="gradient-text">WhatsApp</span>, Apps, Partner Integrations &amp; Agent Tools</h3>
+      <p class="blueprint-post-lead">Now that our internal foundation is solid, our next focus is growth and customer experience. We are building seamless ways for customers to buy and manage insurance wherever they are—whether that's through a modern app, directly on WhatsApp, or through our banking and fintech partners. At the same time, we are giving our agents the digital tools they need to sell efficiently and eliminate spreadsheet chaos.</p>
+      
+      <div class="blueprint-post-grid fade-in">
+        <div class="post-horizon-card ph-cx">
+          <h4>A Modern Customer Experience (Web &amp; App)</h4>
+          <p>Deliver a fast, easy-to-use digital experience that makes our brand feel modern and trustworthy. Buying insurance and filing claims should be simple, transparent, and completely pain-free for our customers.</p>
+          <ul>
+            <li>Simplified Buying: Plain-language policies and fewer steps from quote to purchase.</li>
+            <li>Premium Feel: A high-quality, mobile-first design that works flawlessly.</li>
+            <li>Seamless Journeys: Identity, payments, and support all feel like one unified experience.</li>
+            <li>Trackable Success: We will measure success by sales conversion, customer satisfaction (NPS), and reduced call center volume.</li>
+            <li>Self-Service: Native mobile apps that let customers handle everything from quotes to claims on their own.</li>
+          </ul>
+        </div>
+        
+        <div class="post-horizon-card ph-api">
+          <h4>Partner Integrations (Embedded Insurance)</h4>
+          <p>Make it incredibly easy for banks, fintechs, and other businesses to sell our insurance directly inside their own apps. We will provide secure, plug-and-play connections so they can handle sales and claims seamlessly.</p>
+          <ul>
+            <li>Sales &amp; Distribution: Allow partners to generate quotes, sell policies, and manage renewals directly to their customers.</li>
+            <li>Partner-Led Claims: Give partners the ability to process claims and provide support without frustrating handoffs.</li>
+            <li>Developer Friendly: A clear, reliable, and well-documented toolkit for our partners' tech teams.</li>
+            <li>Secure Finances: Bulletproof systems for collecting premiums and sending out claim payouts accurately.</li>
+            <li>Built for Scale: Automated onboarding so we can add new partners quickly without requiring custom engineering for every deal.</li>
+          </ul>
+        </div>
+        
+        <div class="post-horizon-card ph-wa">
+          <h4>WhatsApp: Insurance Where Customers Already Are</h4>
+          <p>Allow customers to buy policies and process claims directly through WhatsApp. It’s convenient, familiar, and connects seamlessly to our main systems so human agents can easily step in when complexity spikes.</p>
+          <ul>
+            <li>Unified Data: WhatsApp chats connect directly to our core systems, so customer information is always accurate and never lost.</li>
+            <li>Easy Interactions: Quick-reply buttons, clear menus, and secure links for taking payments.</li>
+            <li>Proactive Claims: Customers can report claims in chat and get instant, automated updates on their payout status.</li>
+            <li>Safe &amp; Compliant: Secure messaging that respects customer privacy, with clear analytics to see where customers drop off in the funnel.</li>
+          </ul>
+        </div>
+        
+        <div class="post-horizon-card ph-agent">
+          <h4>Agent Workspace: Smarter Tools for the Field</h4>
+          <p>Give our agents a single, centralized platform to manage partners and sign up new customers. Say goodbye to messy spreadsheets, scattered side-chats, and manual errors.</p>
+          <ul>
+            <li>Partner Dashboard: A clear view of partner performance, agreements, and overall business health.</li>
+            <li>Faster Onboarding: Step-by-step digital guides to help agents sign up new customers quickly and with fewer errors.</li>
+            <li>Team Collaboration: Shared notes and direct links to claims systems so nothing gets lost between agents and operations.</li>
+            <li>Secure Management: Role-specific access and tailored reports for agency leads and managers.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top:2rem;">Engineering Principles</div>
+    <div class="principles-grid fade-in">
+      <div class="principle-card"><span class="p-icon">🤖</span><div class="p-title">AI-First by Default</div><div class="p-desc">Every manual process is a candidate for automation. We build with smart tooling from day one.</div></div>
+      <div class="principle-card"><span class="p-icon">🔐</span><div class="p-title">Compliance-Embedded</div><div class="p-desc">Security and regulatory rules aren't afterthoughts; they are baked into the foundation of every system.</div></div>
+      <div class="principle-card"><span class="p-icon">📦</span><div class="p-title">Quality &amp; Stability</div><div class="p-desc">Peer reviews, clear system architecture, and rigorous testing are non-negotiable for keeping the platform stable.</div></div>
+      <div class="principle-card"><span class="p-icon">📈</span><div class="p-title">Trackable Performance</div><div class="p-desc">We measure what matters. Every process is monitored and logged so we can spot issues and respond immediately.</div></div>
+    </div>
+  </div>
+</section>
+
 
 <!-- EXPERIENCE -->
 <section id="experience">
@@ -1201,90 +1365,6 @@
   </div>
 </section>
 
-<!-- AI VISION -->
-<section id="ai-vision">
-  <div class="section-inner">
-    <div class="section-label">Technical Strategy</div>
-    <h2>How I Will <span class="gradient-text">Transform</span> Operations at Mutual Benefits</h2>
-    <p class="section-desc">True transformation requires more than just coding skills, it's built on solid architecture, scalable systems, and automated workflows. Here is how my comprehensive engineering background will optimize your business.</p>
-    <div class="ai-intro"><p>Throughout my career, I've done more than deploy new technology; I've rebuilt legacy systems for enterprise scale, automated complex operational pipelines, and structured high-performing teams from the ground up. At Mutual Benefits, I will lead with that engineering core domain modeling, APIs, integrations, and cloud-native delivery and pair it with applied AI where it earns its place: document understanding and triage, risk and anomaly signals, and staff or customer-facing assistants on top of governed data and clear human review paths. The result is a more resilient system, fewer manual handoffs, faster claims processing, and a foundation that scales without betting the business on a black box.</p></div>
-    <div class="ai-cards fade-in">
-      <div class="ai-card"><span class="ai-card-icon">📋</span><h4>Claims &amp; policy core systems</h4><p>Design clear domain models and applications; so claims, policies, and payouts move through defined states, fewer spreadsheets, fewer “who owns this?” handoffs, and an auditable trail from intake to resolution. On that backbone, LLM-assisted intake can classify submissions, extract fields from documents, and route work, always with explicit queues and human checkpoints.</p><span class="ai-benefit">↓ First-touch time</span></div>
-      <div class="ai-card"><span class="ai-card-icon">🔌</span><h4>Integrations &amp; event-driven workflows</h4><p>Connect SASS applications, partners, payments, and internal tools with queues and streams, so updates propagate reliably; not brittle nightly batches and teams see consistent data everywhere. Those same events can safely feed scoring, analytics, and real-time reporting.</p><span class="ai-benefit">↑ Data consistency</span></div>
-      <div class="ai-card"><span class="ai-card-icon">📊</span><h4>Data modeling &amp; operational insight</h4><p>, and reporting pipelines that underwriting and operations can trust — dashboards and rules backed by clean data instead of tribal knowledge in inboxes. The same warehouse feeds anomaly detection on claims and payment patterns so suspicious behaviour surfaces before payout, with explainable signals alongside any model output.</p><span class="ai-benefit">↑ Risk visibility</span></div>
-      <div class="ai-card"><span class="ai-card-icon">⚙️</span><h4>Workflow automation (systems + AI)</h4><p>Replace repetitive manual steps with orchestrated jobs, validations, and notifications. Where documents or compliance checks are the bottleneck, AI steps in for extraction, summarisation, and checklist completion, wired through the same queues and audit logs as the rest of the platform.</p><span class="ai-benefit">↓ Manual toil</span></div>
-      <div class="ai-card"><span class="ai-card-icon">🖥️</span><h4>Internal products &amp; service tooling</h4><p>Admin consoles and structured workflows so staff handle renewals, document checks, and customer requests faster, with clear escalation paths instead of ad hoc messaging threads. Layer in assistants for draft replies, policy Q&amp;A over approved sources, and next-best-action prompts so humans stay in control but move faster.</p><span class="ai-benefit">↑ Team &amp; CX throughput</span></div>
-      <div class="ai-card"><span class="ai-card-icon">☁️</span><h4>Cloud, reliability &amp; engineering discipline</h4><p>AWS, Docker, Redis, CI/CD, Unit/Feature Tests, and observability practices so releases are safe, incidents are traceable, and the platform scales as Mutual Benefits applications scale.</p><span class="ai-benefit">↓ Risk at scale</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- TEAM BLUEPRINT -->
-<section id="team-blueprint" style="background:var(--bg-secondary);">
-  <div class="section-inner">
-    <div class="section-label">Team Building</div>
-    <h2>My <span class="gradient-text">180-Day Blueprint</span> for the Engineering Team</h2>
-    <div class="blueprint-phases fade-in">
-      <div class="phase-card p1">
-        <div class="phase-number">Phase 1 · Days 1–30</div>
-        <div class="phase-title">Foundation &amp; Discovery</div>
-        <ul class="phase-items">
-          <li>Audit all existing systems, data, and manual processes</li>
-          <li>Map the full business workflow — claims, underwriting, policy, CX</li>
-          <li>Identify highest-leverage automation targets</li>
-          <li>Define technology stack and cloud strategy (AWS)</li>
-          <li>Set up version control, CI/CD, and dev environments</li>
-          <li>Establish security baselines and compliance requirements</li>
-        </ul>
-      </div>
-      <div class="phase-card p2">
-        <div class="phase-number">Phase 2 · Days 31–60</div>
-        <div class="phase-title">Core Systems &amp; Team</div>
-        <ul class="phase-items">
-          <li>Begin hiring plan, and interview for roles in order of priority</li>
-          <li>Hire first 5-7 team members (backend/frontend/fullstack/QA/UI-UX, then Product Manager and Business Analysts)</li>
-          <li>Map the full business workflow — claims, underwriting, policy, CX</li>
-          <li>Identify highest-leverage automation targets</li>
-          <li>Define technology stack and cloud strategy (AWS)</li>
-          <li>Set up version control, CI/CD, and dev environments</li>
-          <li>Establish security baselines and compliance requirements</li>
-          <li>Establish engineering rituals: sprints, code reviews, docs</li>
-          <li>Define SLAs, uptime targets, and observability stack</li>
-        </ul>
-      </div>
-      <div class="phase-card p3">
-        <div class="phase-number">Phase 3 · Days 61–120</div>
-        <div class="phase-title">Documentation &amp; Development Roadmap</div>
-        <ul class="phase-items">
-          <li>Product Requirement Dcoumentation and Development Roadmap</li>
-          <li>Present first quarterly engineering roadmap to leadership</li>
-          <li>Embed compliance review into the development lifecycle</li>
-          <li>Product Design and Approval</li>
-          <li>Map out the use of AI in the product</li>
-          <li>Product Development and Testing</li>
-        </ul>
-      </div>
-      <div class="phase-card p3">
-        <div class="phase-number">Phase 4 · Days 121–180</div>
-        <div class="phase-title">First Product Launch</div>
-        <ul class="phase-items">
-          <li>Testing and QA for the product</li>
-          <li>Ship first internal product or service tool</li>
-          <li>Establish knowledge base and developer documentation</li>
-          <li>Product Launch</li>
-        </ul>
-      </div>
-    </div>
-    <div class="section-label" style="margin-top:2rem;">Engineering Principles</div>
-    <div class="principles-grid fade-in">
-      <div class="principle-card"><span class="p-icon">🤖</span><div class="p-title">AI-First by Default</div><div class="p-desc">Every manual process is a candidate for automation. We build with AI tooling from day one.</div></div>
-      <div class="principle-card"><span class="p-icon">🔐</span><div class="p-title">Compliance-Embedded</div><div class="p-desc">Security and regulatory compliance aren't afterthoughts, they're baked into every architectural decision.</div></div>
-      <div class="principle-card"><span class="p-icon">📦</span><div class="p-title">Clean Code Culture</div><div class="p-desc">Code reviews, separation of concerns, design patterns, and comprehensive testing are non-negotiable.</div></div>
-      <div class="principle-card"><span class="p-icon">📈</span><div class="p-title">Observable Systems</div><div class="p-desc">Every service is monitored. Every incident is logged. We measure what matters and respond fast.</div></div>
-    </div>
-  </div>
-</section>
-
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-inner">
@@ -1750,7 +1830,7 @@ const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
 }, {threshold:0.1});
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-document.querySelectorAll('.tech-grid .tech-item, .ai-cards .ai-card, .blueprint-phases .phase-card').forEach((el,i) => {
+document.querySelectorAll('.tech-grid .tech-item, .ai-cards .ai-card, .blueprint-phases .phase-card, .blueprint-post-grid .post-horizon-card').forEach((el,i) => {
   el.style.transitionDelay = i*0.05+'s';
 });
 </script>
